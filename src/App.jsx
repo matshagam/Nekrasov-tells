@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import './styles/App.css';
 
 import ContextStore from './store/ContextStore';
-import { Header } from './componets/Header';
+import { Header } from './componets/Header.jsx';
 
 class App extends Component {
   render() {
