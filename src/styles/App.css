@@ -1,12 +1,40 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Rubik, sans-serif; }
+  font-family: Rubik, sans-serif;
+  background-color: #edeee9; }
 
 .header {
   background-color: #40677e;
   padding: 20px;
   height: auto;
-  width: 100%; }
+  width: 100%;
+  box-sizing: border-box; }
   .header-logo {
     height: 50px; }
+  .header-selection {
+    margin: 20px 0 0 0;
+    display: flex;
+    height: 50px; }
+    .header-selection .search {
+      width: 100%;
+      margin-right: 10px; }
+      .header-selection .search-input {
+        width: calc(100% - 30px);
+        height: 100%;
+        border: none;
+        padding: 0 10px 0 20px;
+        font-size: 0.9em;
+        outline: none; }
+    .header-selection .filter {
+      background-color: #40677e;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      margin-left: 10px; }
+      .header-selection .filter p {
+        margin: 0;
+        font-size: 0.6em;
+        color: #ffffff;
+        font-weight: lighter;
+        letter-spacing: 0.9px; }

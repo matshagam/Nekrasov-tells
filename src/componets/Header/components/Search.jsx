@@ -1,16 +1,17 @@
 import React from 'react';
-import { Context } from '../store/ContextStore.jsx';
+import { Context } from '../../../store/ContextStore';
 
 export const Search = () => {
   return (
     <Context.Consumer>
-      {({ query, handleChange }) => (
+      {({ query, searchQueryChanged }) => (
         <form className="search">
           <input
             type="text"
             className="search-input"
+            placeholder="Поисковая строка"
             value={query}
-            onChange={handleChange}
+            onChange={searchQueryChanged}
           />
         </form>
       )}
