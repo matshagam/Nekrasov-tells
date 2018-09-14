@@ -43,48 +43,44 @@ export default class ContextStore extends React.Component {
 
   filterSelectChanged = event => {
     let filterClass = document.querySelector('.filter');
-    let activeClass = filterClass.querySelectorAll('.active');
-    // console.log('event.target.classList.value: ', event.target.classList.value);
+    let changeClass = filterClass.querySelectorAll('.active');
 
-    activeClass.forEach(data => {
-      data.classList.remove('active');
-    });
+    !event.target.className.includes('active')
+      ? changeClass.forEach(data => {
+          data.classList.remove('active');
+        })
+      : null;
 
     if (event.target.classList.value === 'books') {
       this.setState({
         filter: 1
       });
-      event.target.classList.add('active');
-      this.getDataFromServer();
     } else if (event.target.classList.value === 'periodicals') {
       this.setState({
         filter: 2
       });
-
-      event.target.classList.add('active');
-      this.getDataFromServer();
     } else {
       this.setState({
         filter: ''
       });
-
-      event.target.classList.add('active');
-      this.getDataFromServer();
     }
+
+    this.getDataFromServer();
+    event.target.classList.add('active');
   };
 
   onClickChangeView = event => {
-    let bookCard = document.querySelectorAll('.book');
+    let asideClass = document.querySelector('.aside');
+    let changeClass = asideClass.querySelectorAll('.aside-text');
 
-    bookCard.forEach(book => {
-      !book.classList.value.includes('tile-view')
-        ? book.classList.add('tile-view')
-        : book.classList.remove('tile-view');
-    });
+    !event.target.className.includes('active')
+      ? changeClass.forEach(data => {
+          data.classList.remove('active');
+        })
+      : null;
 
-    event.target.classList.value.includes('tile')
-      ? this.setState({ changeView: true })
-      : this.setState({ changeView: false });
+    this.setState({ changeView: !this.state.changeView });
+    event.target.classList.add('active');
   };
 
   render() {

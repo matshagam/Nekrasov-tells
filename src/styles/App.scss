@@ -73,6 +73,14 @@ body {
 
   &-text {
     padding: 10px;
+    background-color: #40677e;
+    color: #fff;
+    user-select: none;
+  }
+
+  &-text.active {
+    background-color: #fff;
+    color: #40677e;
   }
 }
 

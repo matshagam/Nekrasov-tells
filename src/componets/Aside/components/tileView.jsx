@@ -4,17 +4,9 @@ import { Context } from '../../../store/ContextStore.jsx';
 export const TileView = () => {
   return (
     <Context.Consumer>
-      {({ changeView, onClickChangeView }) => {
+      {({ onClickChangeView }) => {
         return (
-          <div
-            onClick={onClickChangeView}
-            style={
-              changeView
-                ? { backgroundColor: '#fff' }
-                : { backgroundColor: '#40677e', color: '#fff' }
-            }
-            className="aside-text tile"
-          >
+          <div onClick={onClickChangeView} className="aside-text tile">
             Плитка
           </div>
         );

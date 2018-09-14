@@ -57,7 +57,13 @@ body {
   float: right;
   height: auto; }
   .aside-text {
-    padding: 10px; }
+    padding: 10px;
+    background-color: #40677e;
+    color: #fff;
+    user-select: none; }
+  .aside-text.active {
+    background-color: #fff;
+    color: #40677e; }
 
 .main {
   width: 100%;
