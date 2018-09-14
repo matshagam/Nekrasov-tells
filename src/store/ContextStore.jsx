@@ -107,8 +107,6 @@ export default class ContextStore extends React.Component {
   };
 
   render() {
-    console.log(this.state.listView);
-
     return (
       <Context.Provider
         value={{

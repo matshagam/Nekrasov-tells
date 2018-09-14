@@ -15,12 +15,12 @@ button {
   color: rgba(255, 255, 255, 0.6);
   width: 69px;
   font-weight: lighter;
-}
 
-button.active {
-  background-color: #fff;
-  color: #40677e;
-  font-weight: bold !important;
+  &.active {
+    background-color: #fff;
+    color: #40677e;
+    font-weight: bold !important;
+  }
 }
 
 .header {
