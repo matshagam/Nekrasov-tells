@@ -21,8 +21,6 @@ export default class ContextStore extends React.Component {
   }
 
   getDataFromServer = () => {
-    console.log(this.state.filter, this.state.query);
-
     axios
       .post(URL, { name: this.state.query, book_type: this.state.filter })
       .then(response => {
@@ -37,41 +35,53 @@ export default class ContextStore extends React.Component {
 
   searchQueryChanged = event => {
     this.setState({ query: event.target.value }, () => {
-      if (this.state.query.length > 1) {
-        this.getDataFromServer();
-      } else if (this.state.query.length < 1) {
-        this.getDataFromServer();
-      }
+      this.state.query.length > 1
+        ? this.getDataFromServer()
+        : this.getDataFromServer();
     });
   };
 
   filterSelectChanged = event => {
     let filterClass = document.querySelector('.filter');
     let changeClass = filterClass.querySelectorAll('.active');
+    let value = event.target.classList.value;
 
-    if (event.target.classList.value.includes('books')) {
-      this.setState({
-        filter: 1
-      });
-    } else if (event.target.classList.value.includes('periodicals')) {
-      this.setState({
-        filter: 2
-      });
+    if (value.includes('books')) {
+      this.setState(
+        {
+          filter: 1
+        },
+        () => {
+          this.getDataFromServer();
+        }
+      );
+    } else if (value.includes('periodicals')) {
+      this.setState(
+        {
+          filter: 2
+        },
+        () => {
+          this.getDataFromServer();
+        }
+      );
     } else {
-      this.setState({
-        filter: ''
-      });
+      this.setState(
+        {
+          filter: ''
+        },
+        () => {
+          this.getDataFromServer();
+        }
+      );
     }
 
-    !event.target.className.includes('active')
+    !value.includes('active')
       ? changeClass.forEach(data => {
           data.classList.remove('active');
         })
       : null;
 
     event.target.classList.add('active');
-
-    this.getDataFromServer();
   };
 
   onClickChangeView = event => {
