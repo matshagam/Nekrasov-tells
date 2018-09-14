@@ -91,27 +91,24 @@ export default class ContextStore extends React.Component {
     let changeClass = asideClass.querySelectorAll('button');
 
     !event.target.className.includes('active')
-      ? changeClass.forEach(data => {
+      ? (changeClass.forEach(data => {
           data.classList.remove('active');
-        })
+        }),
+        this.setState({
+          listView: !this.state.listView
+        }))
       : null;
 
     event.target.classList.value.includes('list')
-      ? (mainClass.classList.add('active'),
-        this.setState({
-          listView: true
-        }))
-      : (mainClass.classList.remove('active'),
-        this.setState({
-          listView: false
-        }));
-
-    console.log(this.state.description);
+      ? mainClass.classList.add('active')
+      : mainClass.classList.remove('active');
 
     event.target.classList.add('active');
   };
 
   render() {
+    console.log(this.state.listView);
+
     return (
       <Context.Provider
         value={{
