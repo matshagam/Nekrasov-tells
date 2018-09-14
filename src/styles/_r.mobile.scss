@@ -1,0 +1,16 @@
+@import 'r.config';
+
+@include mediaSsm {
+}
+
+@include mediaSm {
+  .aside {
+    display: none;
+  }
+}
+
+@include mediaMd {
+}
+
+@include mediaLg {
+}

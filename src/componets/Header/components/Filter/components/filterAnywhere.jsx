@@ -5,7 +5,7 @@ export const FilterAnywhere = () => {
   return (
     <Context.Consumer>
       {({ filterSelectChanged }) => (
-        <p onClick={filterSelectChanged} className="anywhere">
+        <p onClick={filterSelectChanged} className="anywhere active">
           Везде
         </p>
       )}
