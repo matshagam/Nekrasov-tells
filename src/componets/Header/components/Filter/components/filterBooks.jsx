@@ -5,9 +5,9 @@ export const FilterBooks = () => {
   return (
     <Context.Consumer>
       {({ filterSelectChanged }) => (
-        <p onClick={filterSelectChanged} className="books">
+        <button onClick={filterSelectChanged} className="books">
           Книги
-        </p>
+        </button>
       )}
     </Context.Consumer>
   );

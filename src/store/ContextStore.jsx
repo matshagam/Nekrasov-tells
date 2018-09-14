@@ -20,6 +20,41 @@ export default class ContextStore extends React.Component {
     this.getDataFromServer();
   }
 
+  searchQueryChanged = event => {
+    this.setState({ query: event.target.value });
+    this.getDataFromServer();
+  };
+
+  filterSelectChanged = event => {
+    let filterClass = document.querySelector('.filter');
+    let changeClass = filterClass.querySelectorAll('.active');
+
+    if (event.target.classList.value.includes('books')) {
+      this.setState({
+        filter: 1
+      });
+    } else if (event.target.classList.value.includes('periodicals')) {
+      this.setState({
+        filter: 2
+      });
+    } else {
+      this.setState({
+        filter: ''
+      });
+    }
+
+    !event.target.className.includes('active')
+      ? changeClass.forEach(data => {
+          data.classList.remove('active');
+        })
+      : null;
+
+    event.target.classList.add('active');
+
+    console.log(this.state.filter);
+    this.getDataFromServer();
+  };
+
   getDataFromServer = () => {
     axios
       .post(URL, { name: this.state.query, book_type: this.state.filter })
@@ -31,39 +66,6 @@ export default class ContextStore extends React.Component {
       .catch(error => {
         console.log(error);
       });
-  };
-
-  searchQueryChanged = event => {
-    this.setState({ query: event.target.value });
-    this.getDataFromServer();
-  };
-
-  filterSelectChanged = event => {
-    let filterClass = document.querySelector('.filter');
-    let changeClass = filterClass.querySelectorAll('.active');
-
-    !event.target.className.includes('active')
-      ? changeClass.forEach(data => {
-          data.classList.remove('active');
-        })
-      : null;
-
-    if (event.target.classList.value === 'books') {
-      this.setState({
-        filter: 1
-      });
-    } else if (event.target.classList.value === 'periodicals') {
-      this.setState({
-        filter: 2
-      });
-    } else {
-      this.setState({
-        filter: ''
-      });
-    }
-
-    this.getDataFromServer();
-    event.target.classList.add('active');
   };
 
   onClickChangeView = event => {

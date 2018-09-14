@@ -7,6 +7,20 @@ body {
   background-color: #edeee9;
 }
 
+button {
+  border: none;
+  outline: none;
+  padding: 3px;
+  background-color: #40677e;
+  color: rgba(255, 255, 255, 0.6);
+  width: 67px;
+}
+
+button.active {
+  background-color: #fff;
+  color: #40677e;
+}
+
 .header {
   background-color: #40677e;
   padding: 20px;
@@ -42,25 +56,13 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      padding-left: 10px;
-      width: 85px;
+      margin-left: 10px;
 
-      p {
-        margin: 0;
+      button {
         font-size: 0.6em;
-        color: #ffffff;
+        text-align: left;
         font-weight: lighter;
         letter-spacing: 0.9px;
-        line-height: 1;
-        opacity: 0.6;
-        user-select: none;
-        padding: 3px;
-      }
-
-      p.active {
-        background-color: #fff;
-        color: #40677e;
-        opacity: 1;
       }
     }
   }
@@ -69,19 +71,6 @@ body {
 .aside {
   margin: 20px 20px 10px 20px;
   float: right;
-  height: auto;
-
-  &-text {
-    padding: 10px;
-    background-color: #40677e;
-    color: #fff;
-    user-select: none;
-  }
-
-  &-text.active {
-    background-color: #fff;
-    color: #40677e;
-  }
 }
 
 .main {
