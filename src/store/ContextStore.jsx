@@ -20,9 +20,29 @@ export default class ContextStore extends React.Component {
     this.getDataFromServer();
   }
 
+  getDataFromServer = () => {
+    console.log(this.state.filter, this.state.query);
+
+    axios
+      .post(URL, { name: this.state.query, book_type: this.state.filter })
+      .then(response => {
+        this.setState({
+          books: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   searchQueryChanged = event => {
-    this.setState({ query: event.target.value });
-    this.getDataFromServer();
+    this.setState({ query: event.target.value }, () => {
+      if (this.state.query.length > 1) {
+        this.getDataFromServer();
+      } else if (this.state.query.length < 1) {
+        this.getDataFromServer();
+      }
+    });
   };
 
   filterSelectChanged = event => {
@@ -51,21 +71,7 @@ export default class ContextStore extends React.Component {
 
     event.target.classList.add('active');
 
-    console.log(this.state.filter);
     this.getDataFromServer();
-  };
-
-  getDataFromServer = () => {
-    axios
-      .post(URL, { name: this.state.query, book_type: this.state.filter })
-      .then(response => {
-        this.setState({
-          books: response.data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
   };
 
   onClickChangeView = event => {
