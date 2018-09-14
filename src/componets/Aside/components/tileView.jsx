@@ -6,7 +6,7 @@ export const TileView = () => {
     <Context.Consumer>
       {({ onClickChangeView }) => {
         return (
-          <button onClick={onClickChangeView} className="aside-text tile">
+          <button onClick={onClickChangeView} className="tile active">
             Плитка
           </button>
         );

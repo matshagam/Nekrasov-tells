@@ -12,7 +12,8 @@ export default class ContextStore extends React.Component {
     this.state = {
       query: '',
       books: [],
-      filter: ''
+      filter: '',
+      listView: false
     };
   }
 
@@ -43,7 +44,7 @@ export default class ContextStore extends React.Component {
 
   filterSelectChanged = event => {
     let filterClass = document.querySelector('.filter');
-    let changeClass = filterClass.querySelectorAll('.active');
+    let changeClass = filterClass.querySelectorAll('button');
     let value = event.target.classList.value;
 
     if (value.includes('books')) {
@@ -87,7 +88,7 @@ export default class ContextStore extends React.Component {
   onClickChangeView = event => {
     let mainClass = document.querySelector('.main');
     let asideClass = document.querySelector('.aside');
-    let changeClass = asideClass.querySelectorAll('.active');
+    let changeClass = asideClass.querySelectorAll('button');
 
     !event.target.className.includes('active')
       ? changeClass.forEach(data => {
@@ -95,9 +96,17 @@ export default class ContextStore extends React.Component {
         })
       : null;
 
-    event.target.classList.value.includes('tile')
-      ? mainClass.classList.add('active')
-      : mainClass.classList.remove('active');
+    event.target.classList.value.includes('list')
+      ? (mainClass.classList.add('active'),
+        this.setState({
+          listView: true
+        }))
+      : (mainClass.classList.remove('active'),
+        this.setState({
+          listView: false
+        }));
+
+    console.log(this.state.description);
 
     event.target.classList.add('active');
   };
@@ -108,6 +117,7 @@ export default class ContextStore extends React.Component {
         value={{
           query: this.state.query,
           books: this.state.books,
+          listView: this.state.listView,
           searchQueryChanged: this.searchQueryChanged,
           filterSelectChanged: this.filterSelectChanged,
           onClickChangeView: this.onClickChangeView

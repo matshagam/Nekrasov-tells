@@ -6,10 +6,7 @@ export const ListView = () => {
     <Context.Consumer>
       {({ onClickChangeView }) => {
         return (
-          <button
-            onClick={onClickChangeView}
-            className="aside-text list active"
-          >
+          <button onClick={onClickChangeView} className="list">
             Список
           </button>
         );

@@ -7,9 +7,16 @@ export const Main = () => {
   return (
     <main className="main">
       <Context.Consumer>
-        {({ books, changeView }) => {
+        {({ books, changeView, listView }) => {
           return books.map((book, index) => {
-            return <BookCard book={book} changeView={changeView} key={index} />;
+            return (
+              <BookCard
+                book={book}
+                listView={listView}
+                changeView={changeView}
+                key={index}
+              />
+            );
           });
         }}
       </Context.Consumer>
