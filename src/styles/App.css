@@ -14,11 +14,13 @@ button {
   padding: 3px;
   background-color: #40677e;
   color: rgba(255, 255, 255, 0.6);
-  width: 67px; }
+  width: 67px;
+  font-weight: lighter; }
 
 button.active {
   background-color: #fff;
-  color: #40677e; }
+  color: #40677e;
+  font-weight: bold !important; }
 
 .header {
   background-color: #40677e;
@@ -51,7 +53,6 @@ button.active {
       .header-selection .filter button {
         font-size: 0.6em;
         text-align: left;
-        font-weight: lighter;
         letter-spacing: 0.9px; }
 
 .aside {
