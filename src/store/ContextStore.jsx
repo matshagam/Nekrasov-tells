@@ -12,8 +12,7 @@ export default class ContextStore extends React.Component {
     this.state = {
       query: '',
       books: [],
-      filter: '',
-      changeView: false
+      filter: ''
     };
   }
 
@@ -25,8 +24,6 @@ export default class ContextStore extends React.Component {
     axios
       .post(URL, { name: this.state.query, book_type: this.state.filter })
       .then(response => {
-        // console.log(response);
-
         this.setState({
           books: response.data
         });
@@ -70,8 +67,9 @@ export default class ContextStore extends React.Component {
   };
 
   onClickChangeView = event => {
+    let mainClass = document.querySelector('.main');
     let asideClass = document.querySelector('.aside');
-    let changeClass = asideClass.querySelectorAll('.aside-text');
+    let changeClass = asideClass.querySelectorAll('.active');
 
     !event.target.className.includes('active')
       ? changeClass.forEach(data => {
@@ -79,12 +77,14 @@ export default class ContextStore extends React.Component {
         })
       : null;
 
-    this.setState({ changeView: !this.state.changeView });
+    event.target.classList.value.includes('tile')
+      ? mainClass.classList.add('active')
+      : mainClass.classList.remove('active');
+
     event.target.classList.add('active');
   };
 
   render() {
-    // console.log('query: ', this.state.query, 'books: ', this.state.books);
     return (
       <Context.Provider
         value={{
