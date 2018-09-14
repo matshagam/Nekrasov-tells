@@ -90,7 +90,6 @@ export default class ContextStore extends React.Component {
         value={{
           query: this.state.query,
           books: this.state.books,
-          changeView: this.state.changeView,
           searchQueryChanged: this.searchQueryChanged,
           filterSelectChanged: this.filterSelectChanged,
           onClickChangeView: this.onClickChangeView
