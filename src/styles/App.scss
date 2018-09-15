@@ -88,51 +88,38 @@ button {
     box-sizing: border-box;
     background-color: #fff;
 
-    &-header {
+    &-title {
+      text-align: center;
+      font-size: 21px;
+      font-weight: 500;
+    }
+
+    &-image {
+      align-self: center;
+      margin: 10px 0;
+      width: 70%;
+    }
+
+    &-text-footer {
       display: flex;
-      flex-direction: column;
-
-      &-title {
-        text-align: center;
-        font-size: 21px;
-        font-weight: 500;
-      }
-
-      &-img {
-        align-self: center;
-        margin: 10px 0;
-        width: 70%;
-      }
+      flex-direction: row;
+      justify-content: space-between;
     }
 
-    &-text {
-      &-footer {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-    }
-  }
-
-  &.active {
-    .book.active {
+    &.active {
       display: grid;
       grid-template-columns: calc(100% / 4);
       grid-template-rows: auto;
       grid-template-areas:
-        'header header header header'
+        'title title title title'
         'image text text text';
 
-      .book-header {
-        &-title {
-          font-size: 21px;
-          font-weight: 500;
-          grid-area: header;
-        }
+      .book-title {
+        grid-area: title;
+      }
 
-        &-img {
-          grid-area: image;
-        }
+      .book-image {
+        grid-area: image;
       }
 
       .book-text {

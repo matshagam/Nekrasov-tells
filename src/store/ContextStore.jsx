@@ -117,15 +117,6 @@ export default class ContextStore extends React.Component {
     event.target.classList.add('active');
   };
 
-  // windowResized = () => {
-  //   let mainClass = document.querySelector('.main');
-
-  //   if (window.innerWidth < 480) {
-  //     mainClass.classList.remove('active');
-  //   } else if (window.innerWidth > 480) {
-  //   }
-  // };
-
   render() {
     return (
       <Context.Provider
