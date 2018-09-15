@@ -4,8 +4,8 @@ import { Context } from '../../../../../store/ContextStore.jsx';
 export const FilterPeriodicals = () => {
   return (
     <Context.Consumer>
-      {({ filterSelectChanged }) => (
-        <button onClick={filterSelectChanged} className="periodicals">
+      {({ onClickChangeFilter }) => (
+        <button onClick={onClickChangeFilter} className="periodicals">
           Периодика
         </button>
       )}

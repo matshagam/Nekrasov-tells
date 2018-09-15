@@ -19,7 +19,7 @@ export default class ContextStore extends React.Component {
 
   componentDidMount() {
     if (!this.state.book) this.getDataFromServer();
-    document.querySelector('.tile').disabled = true;
+    document.querySelector('.tile').setAttribute('disabled', 'disabled');
   }
 
   getDataFromServer = () => {
@@ -43,9 +43,9 @@ export default class ContextStore extends React.Component {
     });
   };
 
-  filterSelectChanged = event => {
-    let filterClass = document.querySelector('.filter');
-    let changeButtonClass = filterClass.querySelectorAll('button');
+  onClickChangeFilter = event => {
+    let filterSection = document.querySelector('.filter');
+    let filterButtons = filterSection.querySelectorAll('button');
     let value = event.target.classList.value;
 
     if (value.includes('books')) {
@@ -78,7 +78,7 @@ export default class ContextStore extends React.Component {
     }
 
     if (!value.includes('active')) {
-      changeButtonClass.forEach(data => {
+      filterButtons.forEach(data => {
         data.classList.remove('active');
       });
     }
@@ -87,19 +87,19 @@ export default class ContextStore extends React.Component {
   };
 
   onClickChangeView = event => {
-    let mainClass = document.querySelector('.main');
-    let changeBookClass = mainClass.querySelectorAll('.book');
+    let mainSection = document.querySelector('.main');
+    let mainBooks = mainSection.querySelectorAll('.book');
 
-    let asideClass = document.querySelector('.aside');
-    let changeButtonClass = asideClass.querySelectorAll('button');
+    let asideSection = document.querySelector('.aside');
+    let asideButtons = asideSection.querySelectorAll('button');
 
     let windowResized = () => {
       if (window.innerWidth < 480 && this.state.listView) {
-        _toggleAttribute(changeButtonClass);
-        _toggleClass(changeButtonClass);
-        _toggleClass(changeBookClass);
+        _toggleAttribute(asideButtons);
+        _toggleClass(asideButtons);
+        _toggleClass(mainBooks);
 
-        mainClass.classList.remove('active');
+        mainSection.classList.remove('active');
 
         this.setState({
           listView: !this.state.listView
@@ -107,24 +107,22 @@ export default class ContextStore extends React.Component {
       }
     };
 
-    if (!event.target.className.includes('active')) {
-      _toggleClass(changeButtonClass);
-    }
+    _toggleClass(asideButtons);
 
     if (event.target.classList.value.includes('list')) {
       window.addEventListener('resize', windowResized, false);
-      mainClass.classList.add('active');
+      mainSection.classList.add('active');
     }
 
     if (event.target.classList.value.includes('tile')) {
       window.removeEventListener('resize', windowResized, false);
-      mainClass.classList.remove('active');
+      mainSection.classList.remove('active');
     }
 
     event.target.classList.add('active');
 
-    _toggleAttribute(changeButtonClass);
-    _toggleClass(changeBookClass);
+    _toggleAttribute(asideButtons);
+    _toggleClass(mainBooks);
 
     this.setState({
       listView: !this.state.listView
@@ -139,7 +137,7 @@ export default class ContextStore extends React.Component {
           books: this.state.books,
           listView: this.state.listView,
           searchQueryChanged: this.searchQueryChanged,
-          filterSelectChanged: this.filterSelectChanged,
+          onClickChangeFilter: this.onClickChangeFilter,
           onClickChangeView: this.onClickChangeView
         }}
       >
