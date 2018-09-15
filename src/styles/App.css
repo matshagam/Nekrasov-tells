@@ -1,5 +1,7 @@
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 480px) {
   .aside {
+    display: none; }
+  .main .book-text-description {
     display: none; } }
 
 body {
@@ -70,15 +72,43 @@ button {
     margin: 10px 20px;
     box-sizing: border-box;
     background-color: #fff; }
-    .main .book-title {
-      text-align: center;
-      font-size: 21px;
-      font-weight: 500; }
-    .main .book-img {
-      align-self: center;
-      margin: 10px 0;
-      width: 70%; }
+    .main .book-header {
+      display: flex;
+      flex-direction: column; }
+      .main .book-header-title {
+        text-align: center;
+        font-size: 21px;
+        font-weight: 500; }
+      .main .book-header-img {
+        align-self: center;
+        margin: 10px 0;
+        width: 70%; }
     .main .book-text {
       display: flex;
       flex-direction: row;
       justify-content: space-between; }
+  .main.active .book.active {
+    display: flex;
+    flex-direction: row; }
+    .main.active .book.active .book-header {
+      width: 40%;
+      display: flex;
+      flex-direction: column; }
+      .main.active .book.active .book-header-title {
+        text-align: center;
+        font-size: 21px;
+        font-weight: 500; }
+      .main.active .book.active .book-header-img {
+        align-self: center;
+        margin: 10px 0;
+        width: 70%; }
+    .main.active .book.active .book-text {
+      width: 60%;
+      flex-direction: column; }
+      .main.active .book.active .book-text-description {
+        text-align: center;
+        margin: auto; }
+      .main.active .book.active .book-text-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; }

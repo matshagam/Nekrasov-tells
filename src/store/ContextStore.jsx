@@ -76,35 +76,55 @@ export default class ContextStore extends React.Component {
       );
     }
 
-    !value.includes('active')
-      ? changeClass.forEach(data => {
-          data.classList.remove('active');
-        })
-      : null;
+    if (!value.includes('active')) {
+      changeClass.forEach(data => {
+        data.classList.remove('active');
+      });
+    }
 
     event.target.classList.add('active');
   };
 
   onClickChangeView = event => {
     let mainClass = document.querySelector('.main');
+    let changeBookClass = mainClass.querySelectorAll('.book');
+
     let asideClass = document.querySelector('.aside');
-    let changeClass = asideClass.querySelectorAll('button');
+    let changeButtonClass = asideClass.querySelectorAll('button');
 
-    !event.target.className.includes('active')
-      ? (changeClass.forEach(data => {
-          data.classList.remove('active');
-        }),
-        this.setState({
-          listView: !this.state.listView
-        }))
-      : null;
+    if (!event.target.className.includes('active')) {
+      changeButtonClass.forEach(data => {
+        data.classList.remove('active');
+      });
 
-    event.target.classList.value.includes('list')
-      ? mainClass.classList.add('active')
-      : mainClass.classList.remove('active');
+      this.setState({
+        listView: !this.state.listView
+      });
+    }
+
+    if (event.target.classList.value.includes('list')) {
+      mainClass.classList.add('active');
+      changeBookClass.forEach(data => {
+        data.classList.add('active');
+      });
+    } else {
+      mainClass.classList.remove('active');
+      changeBookClass.forEach(data => {
+        data.classList.remove('active');
+      });
+    }
 
     event.target.classList.add('active');
   };
+
+  // windowResized = () => {
+  //   let mainClass = document.querySelector('.main');
+
+  //   if (window.innerWidth < 480) {
+  //     mainClass.classList.remove('active');
+  //   } else if (window.innerWidth > 480) {
+  //   }
+  // };
 
   render() {
     return (

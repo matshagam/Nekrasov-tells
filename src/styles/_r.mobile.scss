@@ -7,6 +7,16 @@
   .aside {
     display: none;
   }
+
+  .main {
+    .book {
+      &-text {
+        &-description {
+          display: none;
+        }
+      }
+    }
+  }
 }
 
 @include mediaMd {

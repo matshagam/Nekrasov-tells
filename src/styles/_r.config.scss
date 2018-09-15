@@ -5,13 +5,13 @@
 }
 
 @mixin mediaSm {
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 480px) {
     @content;
   }
 }
 
 @mixin mediaMd {
-  @media screen and (max-width: 736px) {
+  @media screen and (max-width: 768px) {
     @content;
   }
 }

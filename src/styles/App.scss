@@ -88,22 +88,68 @@ button {
     box-sizing: border-box;
     background-color: #fff;
 
-    &-title {
-      text-align: center;
-      font-size: 21px;
-      font-weight: 500;
-    }
+    &-header {
+      display: flex;
+      flex-direction: column;
 
-    &-img {
-      align-self: center;
-      margin: 10px 0;
-      width: 70%;
+      &-title {
+        text-align: center;
+        font-size: 21px;
+        font-weight: 500;
+      }
+
+      &-img {
+        align-self: center;
+        margin: 10px 0;
+        width: 70%;
+      }
     }
 
     &-text {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+    }
+  }
+
+  &.active {
+    .book.active {
+      display: flex;
+      flex-direction: row;
+
+      .book-header {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+
+        &-title {
+          text-align: center;
+          font-size: 21px;
+          font-weight: 500;
+        }
+
+        &-img {
+          align-self: center;
+          margin: 10px 0;
+          width: 70%;
+        }
+      }
+
+      .book-text {
+        width: 60%;
+        flex-direction: column;
+
+        &-description {
+          text-align: center;
+          margin: auto;
+        }
+
+        &-footer {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
     }
   }
 }
