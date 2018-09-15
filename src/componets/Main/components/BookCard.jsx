@@ -3,10 +3,8 @@ import React from 'react';
 export const BookCard = ({ book, listView }) => {
   return (
     <div className="book">
-      <section className="book-header">
-        <h3 className="book-header-title">{book.title}</h3>
-        <img src={book.image} alt="book" className="book-header-img" />
-      </section>
+      <h3 className="book-header-title">{book.title}</h3>
+      <img src={book.image} alt="book" className="book-header-img" />
       <section className="book-text">
         {listView ? (
           <p className="book-text-description">

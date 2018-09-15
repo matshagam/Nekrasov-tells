@@ -106,49 +106,40 @@ button {
     }
 
     &-text {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+      &-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
     }
   }
 
   &.active {
     .book.active {
-      display: flex;
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: calc(100% / 4);
+      grid-template-rows: auto;
+      grid-template-areas:
+        'header header header header'
+        'image text text text';
 
       .book-header {
-        width: 40%;
-        display: flex;
-        flex-direction: column;
-
         &-title {
-          text-align: center;
           font-size: 21px;
           font-weight: 500;
+          grid-area: header;
         }
 
         &-img {
-          align-self: center;
-          margin: 10px 0;
-          width: 70%;
+          grid-area: image;
         }
       }
 
       .book-text {
-        width: 60%;
+        grid-area: text;
+        display: flex;
         flex-direction: column;
-
-        &-description {
-          text-align: center;
-          margin: auto;
-        }
-
-        &-footer {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-        }
+        justify-content: space-between;
       }
     }
   }
