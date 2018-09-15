@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { URL } from '../helpers/functions';
+import { URL, _toggleAttribute, _toggleClass } from '../helpers/functions';
 
 export const Context = React.createContext();
 
@@ -21,28 +21,6 @@ export default class ContextStore extends React.Component {
     if (!this.state.book) this.getDataFromServer();
     document.querySelector('.tile').disabled = true;
   }
-
-  // windowResized = () => {
-  //   window.addEventListener('resize', () => {
-  //     console.log('listen...');
-  //     let mainClass = document.querySelector('.main');
-  //     let changeBookClass = mainClass.querySelectorAll('.book');
-
-  //     let asideClass = document.querySelector('.aside');
-  //     let tile = asideClass.querySelector('.tile');
-  //     let list = asideClass.querySelector('.list');
-
-  //     if (window.innerWidth < 480 && list.className.includes('active')) {
-  //       changeBookClass.forEach(data => {
-  //         data.classList.remove('active');
-  //       });
-
-  //       mainClass.classList.remove('active');
-  //       list.classList.remove('active');
-  //       tile.classList.add('active');
-  //     }
-  //   });
-  // };
 
   getDataFromServer = () => {
     axios
@@ -117,9 +95,9 @@ export default class ContextStore extends React.Component {
 
     let windowResized = () => {
       if (window.innerWidth < 480 && this.state.listView) {
-        this.toggleButton(changeButtonClass);
-        this.toggleClass(changeButtonClass);
-        this.toggleClass(changeBookClass);
+        _toggleAttribute(changeButtonClass);
+        _toggleClass(changeButtonClass);
+        _toggleClass(changeBookClass);
 
         mainClass.classList.remove('active');
 
@@ -130,7 +108,7 @@ export default class ContextStore extends React.Component {
     };
 
     if (!event.target.className.includes('active')) {
-      this.toggleClass(changeButtonClass);
+      _toggleClass(changeButtonClass);
     }
 
     if (event.target.classList.value.includes('list')) {
@@ -145,27 +123,11 @@ export default class ContextStore extends React.Component {
 
     event.target.classList.add('active');
 
-    this.toggleButton(changeButtonClass);
-    this.toggleClass(changeBookClass);
+    _toggleAttribute(changeButtonClass);
+    _toggleClass(changeBookClass);
 
     this.setState({
       listView: !this.state.listView
-    });
-  };
-
-  toggleClass = classes => {
-    classes.forEach(data => {
-      data.className.includes('active')
-        ? data.classList.remove('active')
-        : data.classList.add('active');
-    });
-  };
-
-  toggleButton = button => {
-    button.forEach(data => {
-      data.hasAttribute('disabled')
-        ? (data.disabled = false)
-        : (data.disabled = true);
     });
   };
 
