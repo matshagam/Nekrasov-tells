@@ -19,29 +19,30 @@ export default class ContextStore extends React.Component {
 
   componentDidMount() {
     if (!this.state.book) this.getDataFromServer();
-    if (!this.state.listView) this.windowResized();
+    document.querySelector('.tile').disabled = true;
   }
 
-  windowResized = () => {
-    window.addEventListener('resize', () => {
-      let mainClass = document.querySelector('.main');
-      let changeBookClass = mainClass.querySelectorAll('.book');
+  // windowResized = () => {
+  //   window.addEventListener('resize', () => {
+  //     console.log('listen...');
+  //     let mainClass = document.querySelector('.main');
+  //     let changeBookClass = mainClass.querySelectorAll('.book');
 
-      let asideClass = document.querySelector('.aside');
-      let tile = asideClass.querySelector('.tile');
-      let list = asideClass.querySelector('.list');
+  //     let asideClass = document.querySelector('.aside');
+  //     let tile = asideClass.querySelector('.tile');
+  //     let list = asideClass.querySelector('.list');
 
-      if (window.innerWidth < 480 && list.className.includes('active')) {
-        changeBookClass.forEach(data => {
-          data.classList.remove('active');
-        });
+  //     if (window.innerWidth < 480 && list.className.includes('active')) {
+  //       changeBookClass.forEach(data => {
+  //         data.classList.remove('active');
+  //       });
 
-        mainClass.classList.remove('active');
-        list.classList.remove('active');
-        tile.classList.add('active');
-      }
-    });
-  };
+  //       mainClass.classList.remove('active');
+  //       list.classList.remove('active');
+  //       tile.classList.add('active');
+  //     }
+  //   });
+  // };
 
   getDataFromServer = () => {
     axios
@@ -66,7 +67,7 @@ export default class ContextStore extends React.Component {
 
   filterSelectChanged = event => {
     let filterClass = document.querySelector('.filter');
-    let changeClass = filterClass.querySelectorAll('button');
+    let changeButtonClass = filterClass.querySelectorAll('button');
     let value = event.target.classList.value;
 
     if (value.includes('books')) {
@@ -99,7 +100,7 @@ export default class ContextStore extends React.Component {
     }
 
     if (!value.includes('active')) {
-      changeClass.forEach(data => {
+      changeButtonClass.forEach(data => {
         data.classList.remove('active');
       });
     }
@@ -114,29 +115,58 @@ export default class ContextStore extends React.Component {
     let asideClass = document.querySelector('.aside');
     let changeButtonClass = asideClass.querySelectorAll('button');
 
-    if (!event.target.className.includes('active')) {
-      changeButtonClass.forEach(data => {
-        data.classList.remove('active');
-      });
+    let windowResized = () => {
+      if (window.innerWidth < 480 && this.state.listView) {
+        this.toggleButton(changeButtonClass);
+        this.toggleClass(changeButtonClass);
+        this.toggleClass(changeBookClass);
 
-      this.setState({
-        listView: !this.state.listView
-      });
+        mainClass.classList.remove('active');
+
+        this.setState({
+          listView: !this.state.listView
+        });
+      }
+    };
+
+    if (!event.target.className.includes('active')) {
+      this.toggleClass(changeButtonClass);
     }
 
     if (event.target.classList.value.includes('list')) {
+      window.addEventListener('resize', windowResized, false);
       mainClass.classList.add('active');
-      changeBookClass.forEach(data => {
-        data.classList.add('active');
-      });
-    } else {
+    }
+
+    if (event.target.classList.value.includes('tile')) {
+      window.removeEventListener('resize', windowResized, false);
       mainClass.classList.remove('active');
-      changeBookClass.forEach(data => {
-        data.classList.remove('active');
-      });
     }
 
     event.target.classList.add('active');
+
+    this.toggleButton(changeButtonClass);
+    this.toggleClass(changeBookClass);
+
+    this.setState({
+      listView: !this.state.listView
+    });
+  };
+
+  toggleClass = classes => {
+    classes.forEach(data => {
+      data.className.includes('active')
+        ? data.classList.remove('active')
+        : data.classList.add('active');
+    });
+  };
+
+  toggleButton = button => {
+    button.forEach(data => {
+      data.hasAttribute('disabled')
+        ? (data.disabled = false)
+        : (data.disabled = true);
+    });
   };
 
   render() {
