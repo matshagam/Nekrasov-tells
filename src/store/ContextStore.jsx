@@ -18,8 +18,30 @@ export default class ContextStore extends React.Component {
   }
 
   componentDidMount() {
-    this.getDataFromServer();
+    if (!this.state.book) this.getDataFromServer();
+    if (!this.state.listView) this.windowResized();
   }
+
+  windowResized = () => {
+    window.addEventListener('resize', () => {
+      let mainClass = document.querySelector('.main');
+      let changeBookClass = mainClass.querySelectorAll('.book');
+
+      let asideClass = document.querySelector('.aside');
+      let tile = asideClass.querySelector('.tile');
+      let list = asideClass.querySelector('.list');
+
+      if (window.innerWidth < 480 && list.className.includes('active')) {
+        changeBookClass.forEach(data => {
+          data.classList.remove('active');
+        });
+
+        mainClass.classList.remove('active');
+        list.classList.remove('active');
+        tile.classList.add('active');
+      }
+    });
+  };
 
   getDataFromServer = () => {
     axios

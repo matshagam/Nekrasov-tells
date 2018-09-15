@@ -1,7 +1,5 @@
 @media screen and (max-width: 480px) {
   .aside {
-    display: none; }
-  .main .book-text-description {
     display: none; } }
 
 body {
@@ -63,15 +61,20 @@ button {
 .main {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  margin-top: 10px; }
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 55px auto;
+  max-width: 1200px; }
   .main .book {
     padding: 16px;
     display: flex;
     flex-direction: column;
     margin: 10px 20px;
     box-sizing: border-box;
-    background-color: #fff; }
+    background-color: #fff;
+    max-width: 360px;
+    min-width: 320px;
+    width: 360px; }
     .main .book-title {
       text-align: center;
       font-size: 21px;
@@ -85,12 +88,15 @@ button {
       flex-direction: row;
       justify-content: space-between; }
     .main .book.active {
+      max-width: 100%;
+      width: 100%;
       display: grid;
       grid-template-columns: calc(100% / 4);
       grid-template-rows: auto;
       grid-template-areas: 'title title title title' 'image text text text'; }
       .main .book.active .book-title {
-        grid-area: title; }
+        grid-area: title;
+        text-align: left; }
       .main .book.active .book-image {
         grid-area: image; }
       .main .book.active .book-text {
