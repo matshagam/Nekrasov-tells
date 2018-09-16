@@ -86,7 +86,8 @@ export default class ContextStore extends React.Component {
 
   onClickChangeView = event => {
     let viewEvent = event.target.classList;
-    let mainBooks = document.querySelectorAll('.main .book');
+    let mainSection = document.querySelector('.main');
+    let mainBooks = mainSection.querySelectorAll('.main .book');
     let asideButtons = document.querySelectorAll('.aside button');
 
     let windowResized = () => {
@@ -99,6 +100,7 @@ export default class ContextStore extends React.Component {
 
         _toggleAttribute(asideButtons, tileButton, 'disabled', 'disabled');
         _toggleClass(mainBooks, 'list-view');
+        mainSection.classList.toggle('list-view');
 
         window.removeEventListener('resize', windowResized, false);
       }
@@ -114,6 +116,7 @@ export default class ContextStore extends React.Component {
 
     _toggleAttribute(asideButtons, viewEvent, 'disabled', 'disabled');
     _toggleClass(mainBooks, 'list-view');
+    mainSection.classList.toggle('list-view');
 
     this.setState(state => ({
       listView: !state.listView
