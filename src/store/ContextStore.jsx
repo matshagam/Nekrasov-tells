@@ -107,6 +107,8 @@ export default class ContextStore extends React.Component {
 
         _toggleAttribute(asideButtons, 'disabled', 'disabled', true);
         _toggleClass(mainBooks, '', 'active');
+
+        window.removeEventListener('resize', windowResized, false);
       }
     };
 
