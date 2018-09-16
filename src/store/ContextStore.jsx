@@ -102,9 +102,9 @@ export default class ContextStore extends React.Component {
           true
         );
 
-        this.setState({
-          listView: !this.state.listView
-        });
+        this.setState(state => ({
+          listView: !state.listView
+        }));
 
         _toggleAttribute(asideButtons, 'disabled', 'disabled', true);
         _toggleClass(mainBooks, '', 'active');
@@ -126,9 +126,9 @@ export default class ContextStore extends React.Component {
     _toggleAttribute(asideButtons, 'disabled', 'disabled', true);
     _toggleClass(mainBooks, '', 'active');
 
-    this.setState({
-      listView: !this.state.listView
-    });
+    this.setState(state => ({
+      listView: !state.listView
+    }));
   };
 
   render() {
