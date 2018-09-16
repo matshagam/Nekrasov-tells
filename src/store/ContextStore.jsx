@@ -8,6 +8,7 @@ export const Context = React.createContext();
 export default class ContextStore extends React.Component {
   constructor(props) {
     super(props);
+    console.log('props: ', props);
 
     this.state = {
       query: '',
@@ -20,13 +21,15 @@ export default class ContextStore extends React.Component {
   componentDidMount() {
     if (this.state.books) this.getDataFromServer();
 
-    document.querySelector('.tile').setAttribute('disabled', 'disabled');
-    document.querySelector('.anywhere').setAttribute('disabled', 'disabled');
+    ['.anywhere', '.tile'].forEach(val => {
+      document.querySelector(val).setAttribute('disabled', 'disabled');
+    });
   }
 
   getDataFromServer = () => {
+    const { query, filter } = this.state;
     axios
-      .post(URL, { name: this.state.query, book_type: this.state.filter })
+      .post(URL, { name: query, book_type: filter })
       .then(response => {
         this.setState({
           books: response.data
@@ -46,12 +49,10 @@ export default class ContextStore extends React.Component {
   };
 
   onClickChangeFilter = event => {
-    let thisEvent = event.target.classList;
+    let filterEvent = event.target.classList;
+    let filterButtons = document.querySelectorAll('.filter button');
 
-    let filterSection = document.querySelector('.filter');
-    let filterButtons = filterSection.querySelectorAll('button');
-
-    if (thisEvent.value.includes('books')) {
+    if (filterEvent.value.includes('books')) {
       this.setState(
         {
           filter: 1
@@ -60,7 +61,7 @@ export default class ContextStore extends React.Component {
           this.getDataFromServer();
         }
       );
-    } else if (thisEvent.value.includes('periodicals')) {
+    } else if (filterEvent.value.includes('periodicals')) {
       this.setState(
         {
           filter: 2
@@ -80,51 +81,39 @@ export default class ContextStore extends React.Component {
       );
     }
 
-    _toggleClass(filterButtons, thisEvent, 'active', true);
-    _toggleAttribute(filterButtons, 'disabled', 'disabled', true);
+    _toggleAttribute(filterButtons, filterEvent, 'disabled', 'disabled');
   };
 
   onClickChangeView = event => {
-    let thisEvent = event.target.classList;
-
-    let mainSection = document.querySelector('.main');
-    let mainBooks = mainSection.querySelectorAll('.book');
-
-    let asideSection = document.querySelector('.aside');
-    let asideButtons = asideSection.querySelectorAll('button');
+    let viewEvent = event.target.classList;
+    let mainBooks = document.querySelectorAll('.main .book');
+    let asideButtons = document.querySelectorAll('.aside button');
 
     let windowResized = () => {
-      if (window.innerWidth < 480 && this.state.listView) {
-        _toggleClass(
-          asideButtons,
-          document.querySelector('.tile').classList,
-          'active',
-          true
-        );
+      let tileButton = document.querySelector('.tile').classList;
 
+      if (window.innerWidth < 480 && this.state.listView) {
         this.setState(state => ({
           listView: !state.listView
         }));
 
-        _toggleAttribute(asideButtons, 'disabled', 'disabled', true);
-        _toggleClass(mainBooks, '', 'active');
+        _toggleAttribute(asideButtons, tileButton, 'disabled', 'disabled');
+        _toggleClass(mainBooks, 'active');
 
         window.removeEventListener('resize', windowResized, false);
       }
     };
 
-    _toggleClass(asideButtons, thisEvent, 'active', true);
-
-    if (thisEvent.value.includes('list')) {
+    if (viewEvent.value.includes('list')) {
       window.addEventListener('resize', windowResized, false);
     }
 
-    if (thisEvent.value.includes('tile')) {
+    if (viewEvent.value.includes('tile')) {
       window.removeEventListener('resize', windowResized, false);
     }
 
-    _toggleAttribute(asideButtons, 'disabled', 'disabled', true);
-    _toggleClass(mainBooks, '', 'active');
+    _toggleAttribute(asideButtons, viewEvent, 'disabled', 'disabled');
+    _toggleClass(mainBooks, 'active');
 
     this.setState(state => ({
       listView: !state.listView

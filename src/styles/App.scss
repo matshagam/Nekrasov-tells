@@ -16,10 +16,11 @@ button {
   width: 69px;
   font-weight: lighter;
 
-  &.active {
+  &:disabled {
     background-color: #fff;
     color: #40677e;
     font-weight: bold !important;
+    transition: background-color 0.3s ease-out;
   }
 }
 
