@@ -98,7 +98,7 @@ export default class ContextStore extends React.Component {
         }));
 
         _toggleAttribute(asideButtons, tileButton, 'disabled', 'disabled');
-        _toggleClass(mainBooks, 'active');
+        _toggleClass(mainBooks, 'list-view');
 
         window.removeEventListener('resize', windowResized, false);
       }
@@ -113,7 +113,7 @@ export default class ContextStore extends React.Component {
     }
 
     _toggleAttribute(asideButtons, viewEvent, 'disabled', 'disabled');
-    _toggleClass(mainBooks, 'active');
+    _toggleClass(mainBooks, 'list-view');
 
     this.setState(state => ({
       listView: !state.listView
