@@ -95,9 +95,9 @@ export default class ContextStore extends React.Component {
 
     let windowResized = () => {
       if (window.innerWidth < 480 && this.state.listView) {
-        _toggleAttribute(asideButtons);
-        _toggleClass(asideButtons);
-        _toggleClass(mainBooks);
+        _toggleAttribute(asideButtons, 'disabled');
+        _toggleClass(asideButtons, 'active');
+        _toggleClass(mainBooks, 'active');
 
         mainSection.classList.remove('active');
 
@@ -107,7 +107,7 @@ export default class ContextStore extends React.Component {
       }
     };
 
-    _toggleClass(asideButtons);
+    _toggleClass(asideButtons, 'active');
 
     if (event.target.classList.value.includes('list')) {
       window.addEventListener('resize', windowResized, false);
@@ -121,8 +121,8 @@ export default class ContextStore extends React.Component {
 
     event.target.classList.add('active');
 
-    _toggleAttribute(asideButtons);
-    _toggleClass(mainBooks);
+    _toggleAttribute(asideButtons, 'disabled');
+    _toggleClass(mainBooks, 'active');
 
     this.setState({
       listView: !this.state.listView
