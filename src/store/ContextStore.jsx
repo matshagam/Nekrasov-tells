@@ -41,10 +41,9 @@ export default class ContextStore extends React.Component {
   };
 
   searchQueryChanged = event => {
+    const { query } = this.state;
     this.setState({ query: event.target.value }, () => {
-      this.state.query.length > 1
-        ? this.getDataFromServer()
-        : this.getDataFromServer();
+      if (query.length > 1 || query.length < 1) this.getDataFromServer();
     });
   };
 
