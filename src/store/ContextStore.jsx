@@ -18,7 +18,8 @@ export default class ContextStore extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.state.book) this.getDataFromServer();
+    if (this.state.books) this.getDataFromServer();
+
     document.querySelector('.tile').setAttribute('disabled', 'disabled');
     document.querySelector('.anywhere').setAttribute('disabled', 'disabled');
   }
