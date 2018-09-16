@@ -20,6 +20,7 @@ export default class ContextStore extends React.Component {
   componentDidMount() {
     if (!this.state.book) this.getDataFromServer();
     document.querySelector('.tile').setAttribute('disabled', 'disabled');
+    document.querySelector('.anywhere').setAttribute('disabled', 'disabled');
   }
 
   getDataFromServer = () => {
@@ -77,11 +78,9 @@ export default class ContextStore extends React.Component {
       );
     }
 
-    if (!value.includes('active')) {
-      _toggleClass(filterButtons, 'active', 'remove');
-    }
-
+    _toggleClass(filterButtons, 'active', 'remove');
     event.target.classList.add('active');
+    _toggleAttribute(filterButtons, 'disabled', 'disabled');
   };
 
   onClickChangeView = event => {

@@ -6,6 +6,9 @@ export const _toggleClass = (target, name, action) => {
       case 'remove':
         data.classList.remove(name);
         break;
+      case 'add':
+        data.classList.add(name);
+        break;
       case 'toggle':
         data.classList.toggle(name);
         break;
@@ -17,8 +20,14 @@ export const _toggleClass = (target, name, action) => {
 
 export const _toggleAttribute = (target, name, value) => {
   target.forEach(data => {
-    data.hasAttribute(name)
-      ? data.removeAttribute(name)
-      : data.setAttribute(name, value);
+    if (data.hasAttribute(name)) {
+      data.removeAttribute(name);
+    } else {
+      if (data.tagName !== 'BUTTON') {
+        data.setAttribute(name, value);
+      } else {
+        if (data.className.includes('active')) data.setAttribute(name, value);
+      }
+    }
   });
 };
