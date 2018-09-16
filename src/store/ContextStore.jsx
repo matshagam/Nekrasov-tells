@@ -79,8 +79,8 @@ export default class ContextStore extends React.Component {
       );
     }
 
-    _toggleClass(filterButtons, thisEvent, 'active');
-    _toggleAttribute(filterButtons, 'disabled', 'disabled');
+    _toggleClass(filterButtons, thisEvent, 'active', true);
+    _toggleAttribute(filterButtons, 'disabled', 'disabled', true);
   };
 
   onClickChangeView = event => {
@@ -97,19 +97,20 @@ export default class ContextStore extends React.Component {
         _toggleClass(
           asideButtons,
           document.querySelector('.tile').classList,
-          'active'
+          'active',
+          true
         );
 
         this.setState({
           listView: !this.state.listView
         });
 
-        _toggleAttribute(asideButtons, 'disabled', 'disabled');
+        _toggleAttribute(asideButtons, 'disabled', 'disabled', true);
         _toggleClass(mainBooks, '', 'active');
       }
     };
 
-    _toggleClass(asideButtons, thisEvent, 'active');
+    _toggleClass(asideButtons, thisEvent, 'active', true);
 
     if (thisEvent.value.includes('list')) {
       window.addEventListener('resize', windowResized, false);
@@ -119,7 +120,7 @@ export default class ContextStore extends React.Component {
       window.removeEventListener('resize', windowResized, false);
     }
 
-    _toggleAttribute(asideButtons, 'disabled', 'disabled');
+    _toggleAttribute(asideButtons, 'disabled', 'disabled', true);
     _toggleClass(mainBooks, '', 'active');
 
     this.setState({
