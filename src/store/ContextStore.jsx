@@ -47,9 +47,10 @@ export default class ContextStore extends React.Component {
   onClickChangeFilter = event => {
     let filterSection = document.querySelector('.filter');
     let filterButtons = filterSection.querySelectorAll('button');
-    let value = event.target.classList.value;
 
-    if (value.includes('books')) {
+    let thisEvent = event.target.classList;
+
+    if (thisEvent.value.includes('books')) {
       this.setState(
         {
           filter: 1
@@ -58,7 +59,7 @@ export default class ContextStore extends React.Component {
           this.getDataFromServer();
         }
       );
-    } else if (value.includes('periodicals')) {
+    } else if (thisEvent.value.includes('periodicals')) {
       this.setState(
         {
           filter: 2
@@ -78,12 +79,13 @@ export default class ContextStore extends React.Component {
       );
     }
 
-    _toggleClass(filterButtons, 'active', 'remove');
-    event.target.classList.add('active');
+    _toggleClass(filterButtons, thisEvent, 'active');
     _toggleAttribute(filterButtons, 'disabled', 'disabled');
   };
 
   onClickChangeView = event => {
+    let thisEvent = event.target.classList;
+
     let mainSection = document.querySelector('.main');
     let mainBooks = mainSection.querySelectorAll('.book');
 
@@ -93,8 +95,8 @@ export default class ContextStore extends React.Component {
     let windowResized = () => {
       if (window.innerWidth < 480 && this.state.listView) {
         _toggleAttribute(asideButtons, 'disabled', 'disabled');
-        _toggleClass(asideButtons, 'active', 'toggle');
-        _toggleClass(mainBooks, 'active', 'toggle');
+        _toggleClass(asideButtons, thisEvent, 'active');
+        _toggleClass(mainBooks, '', 'active');
 
         mainSection.classList.remove('active');
 
@@ -104,22 +106,20 @@ export default class ContextStore extends React.Component {
       }
     };
 
-    _toggleClass(asideButtons, 'active', 'toggle');
+    _toggleClass(asideButtons, thisEvent, 'active');
 
-    if (event.target.classList.value.includes('list')) {
+    if (thisEvent.value.includes('list')) {
       window.addEventListener('resize', windowResized, false);
       mainSection.classList.add('active');
     }
 
-    if (event.target.classList.value.includes('tile')) {
+    if (thisEvent.value.includes('tile')) {
       window.removeEventListener('resize', windowResized, false);
       mainSection.classList.remove('active');
     }
 
-    event.target.classList.add('active');
-
     _toggleAttribute(asideButtons, 'disabled', 'disabled');
-    _toggleClass(mainBooks, 'active', 'toggle');
+    _toggleClass(mainBooks, '', 'active');
 
     this.setState({
       listView: !this.state.listView

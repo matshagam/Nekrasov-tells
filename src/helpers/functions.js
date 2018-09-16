@@ -1,19 +1,15 @@
 export const URL = 'http://job.nekrasovka.ru/search';
 
-export const _toggleClass = (target, name, action) => {
-  target.forEach(data => {
-    switch (action) {
-      case 'remove':
-        data.classList.remove(name);
-        break;
-      case 'add':
+export const _toggleClass = (target1, target2, name) => {
+  target1.forEach(data => {
+    if (data.tagName !== 'BUTTON') {
+      data.classList.toggle(name);
+    } else {
+      if (data.classList === target2) {
         data.classList.add(name);
-        break;
-      case 'toggle':
-        data.classList.toggle(name);
-        break;
-      default:
-        break;
+      } else {
+        data.classList.remove(name);
+      }
     }
   });
 };
