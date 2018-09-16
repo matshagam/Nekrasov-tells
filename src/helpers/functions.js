@@ -5,11 +5,9 @@ export const _toggleClass = (target1, target2, name) => {
     if (data.tagName !== 'BUTTON') {
       data.classList.toggle(name);
     } else {
-      if (data.classList === target2) {
-        data.classList.add(name);
-      } else {
-        data.classList.remove(name);
-      }
+      data.classList === target2
+        ? data.classList.add(name)
+        : data.classList.remove(name);
     }
   });
 };

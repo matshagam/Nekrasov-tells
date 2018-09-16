@@ -113,7 +113,6 @@ button {
 
     &.active {
       max-width: 100%;
-      // min-width: 800px;
       width: 100%;
       display: grid;
       grid-template-columns: calc(100% / 4);
