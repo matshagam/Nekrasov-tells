@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const FilterPeriodicals = () => {
-  return <button className="periodicals">Периодика</button>;
+export const FilterPeriodicals = ({ name, onClick }) => {
+  return <button onClick={onClick}>{name}</button>;
 };
 
 // <button onClick={onClickChangeFilter} className="periodicals">

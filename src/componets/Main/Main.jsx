@@ -1,17 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getBooks } from '../../actions/BookAction';
 
 import { BookCard } from './components/bookCard';
 
-export default class Main extends React.Component {
+class Main extends React.Component {
+  componentDidMount() {
+    this.props.getBooks('', '');
+  }
+
   render() {
-    const { book, listView } = this.props;
-    console.log('book, listView: ', book, listView);
+    const { books } = this.props;
     return (
       <main className="main">
-        {book.map((data, i) => {
-          return <BookCard book={data} listView={listView} key={i} />;
+        {books.books.map((data, i) => {
+          return <BookCard book={data} listView={false} key={i} />;
         })}
       </main>
     );
   }
 }
+
+const mapStateToProps = store => ({
+  books: store.books
+});
+
+export default connect(
+  mapStateToProps,
+  { getBooks }
+)(Main);

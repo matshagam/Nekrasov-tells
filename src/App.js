@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getBooks } from './actions/BookAction';
 
 import { _toggleAttribute, _toggleClass } from './helpers/functions';
 
@@ -10,7 +8,7 @@ import { Header } from './componets/Header/Header.jsx';
 import Main from './componets/Main/Main.jsx';
 import { Aside } from './componets/Aside/Aside.jsx';
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
 
@@ -21,12 +19,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { query, filter } = this.state;
-    this.props.getBooks(query, filter);
-
-    ['.anywhere', '.tile'].forEach(val => {
-      document.querySelector(val).setAttribute('disabled', 'disabled');
-    });
+    document
+      .querySelector('.filter')
+      .children[0].setAttribute('disabled', 'disabled');
   }
 
   searchQueryChanged = event => {
@@ -112,9 +107,6 @@ class App extends Component {
   };
 
   render() {
-    const { books, list } = this.props;
-    console.log('query: ', this.state.query);
-
     return (
       <React.Fragment>
         <Header
@@ -122,20 +114,8 @@ class App extends Component {
           searchQueryChanged={this.searchQueryChanged}
         />
         <Aside />
-        <Main book={books} listView={list} />
+        <Main />
       </React.Fragment>
     );
   }
 }
-
-// приклеиваем данные из store
-const mapStateToProps = store => ({
-  books: store.books,
-  list: store.list
-});
-
-// в наш компонент App, с помощью connect(mapStateToProps)
-export default connect(
-  mapStateToProps,
-  { getBooks }
-)(App);

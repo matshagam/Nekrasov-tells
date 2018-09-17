@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../assets/logo_nekrasovka.svg';
 
 import { Search } from './components/Search';
-import { Filter } from './components/Filter/Filter';
+import Filter from './components/Filter/Filter';
 
 export const Header = ({ query, searchQueryChanged }) => {
   return (
