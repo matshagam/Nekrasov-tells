@@ -1,4 +1,4 @@
-export const TOGGLE_VIEW = 'TOGGLE_VIEW'; // положили строку в константу
+import { TOGGLE_VIEW } from './types';
 
 export const toggleView = listView => {
   return {

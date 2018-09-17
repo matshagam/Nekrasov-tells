@@ -1,4 +1,4 @@
-import { TOGGLE_VIEW } from '../actions/ViewActions';
+import { TOGGLE_VIEW } from '../actions/types';
 
 export const initialState = {
   listView: false

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { getBooks } from './actions/BookAction';
 
-import { URL, _toggleAttribute, _toggleClass } from './helpers/functions';
+import { _toggleAttribute, _toggleClass } from './helpers/functions';
 
 import './styles/App.css';
 
 import { Header } from './componets/Header/Header.jsx';
-import { Main } from './componets/Main/Main.jsx';
+import Main from './componets/Main/Main.jsx';
 import { Aside } from './componets/Aside/Aside.jsx';
 
 class App extends Component {
@@ -22,7 +21,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.getBooks();
+    const { query, filter } = this.state;
+    this.props.getBooks(query, filter);
 
     ['.anywhere', '.tile'].forEach(val => {
       document.querySelector(val).setAttribute('disabled', 'disabled');
@@ -114,9 +114,6 @@ class App extends Component {
   render() {
     const { books, list } = this.props;
     console.log('query: ', this.state.query);
-
-    console.log('list: ', list);
-    console.log('books: ', books);
 
     return (
       <React.Fragment>

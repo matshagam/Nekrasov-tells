@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { URL } from '../helpers/functions';
+import { GET_BOOKS } from './types';
 
-export const GET_BOOKS = 'GET_BOOKS';
-
-export const getBooks = () => dispatch => {
+export const getBooks = (query, filter) => dispatch => {
   axios
-    .post(URL, { name: '', book_type: '' })
+    .post(URL, { name: query, book_type: filter })
     .then(response => {
       dispatch({
         type: GET_BOOKS,
