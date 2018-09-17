@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 import { URL, _toggleAttribute, _toggleClass } from './helpers/functions';
 
 import './styles/App.css';
 
 import { Header } from './componets/Header/Header.jsx';
-import Main from './componets/Main/Main.jsx';
+import { Main } from './componets/Main/Main.jsx';
 import { Aside } from './componets/Aside/Aside.jsx';
 
 class App extends Component {
@@ -126,14 +127,25 @@ class App extends Component {
   };
 
   render() {
+    const { book, list } = this.props.books;
+
     return (
       <React.Fragment>
         <Header />
         <Aside />
-        <Main />
+        <Main book={book} listView={list} />
       </React.Fragment>
     );
   }
 }
 
-export default App;
+// приклеиваем данные из store
+const mapStateToProps = store => {
+  return {
+    books: store.books,
+    list: store.list
+  };
+};
+
+// в наш компонент App, с помощью connect(mapStateToProps)
+export default connect(mapStateToProps)(App);
