@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { URL, _toggleAttribute, _toggleClass } from '../helpers/functions';
+import { URL, _toggleAttribute, _toggleClass } from './helpers/functions';
 
-export const Context = React.createContext();
+import './styles/App.css';
 
-export default class ContextStore extends React.Component {
+import { Header } from './componets/Header/Header.jsx';
+import { Main } from './componets/Main/Main.jsx';
+import { Aside } from './componets/Aside/Aside.jsx';
+
+class App extends Component {
   constructor(props) {
     super(props);
-    console.log('props: ', props);
 
     this.state = {
       query: '',
@@ -124,18 +128,21 @@ export default class ContextStore extends React.Component {
 
   render() {
     return (
-      <Context.Provider
-        value={{
-          query: this.state.query,
-          books: this.state.books,
-          listView: this.state.listView,
-          searchQueryChanged: this.searchQueryChanged,
-          onClickChangeFilter: this.onClickChangeFilter,
-          onClickChangeView: this.onClickChangeView
-        }}
-      >
-        {this.props.children}
-      </Context.Provider>
+      <React.Fragment>
+        <Header />
+        <Aside />
+        <Main />
+      </React.Fragment>
     );
   }
 }
+
+// приклеиваем данные из store
+const mapStateToProps = store => {
+  console.log(store); // посмотрим, что же у нас в store?
+  return {
+    user: store.user
+  };
+};
+// в наш компонент App, с помощью connect(mapStateToProps)
+export default connect(mapStateToProps)(App);

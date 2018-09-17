@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ListView } from './components/listView.jsx';
-import { TileView } from './components/tileView.jsx';
+import { ListView } from './components/listView';
+import { TileView } from './components/tileView';
 
 export const Aside = () => {
   return (

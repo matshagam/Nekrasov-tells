@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { FilterAnywhere } from './components/filterAnywhere.jsx';
-import { FilterBooks } from './components/filterBooks.jsx';
-import { FilterPeriodicals } from './components/filterPeriodicals.jsx';
+import { FilterAnywhere } from './components/filterAnywhere';
+import { FilterBooks } from './components/filterBooks';
+import { FilterPeriodicals } from './components/filterPeriodicals';
 
 export const Filter = () => {
   return (
