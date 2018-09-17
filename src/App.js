@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { getBooks } from './actions/BookAction';
 
 import { URL, _toggleAttribute, _toggleClass } from './helpers/functions';
 
@@ -16,33 +17,17 @@ class App extends Component {
 
     this.state = {
       query: '',
-      books: [],
-      filter: '',
-      listView: false
+      filter: ''
     };
   }
 
   componentDidMount() {
-    if (this.state.books) this.getDataFromServer();
+    this.props.getBooks();
 
     ['.anywhere', '.tile'].forEach(val => {
       document.querySelector(val).setAttribute('disabled', 'disabled');
     });
   }
-
-  getDataFromServer = () => {
-    const { query, filter } = this.state;
-    axios
-      .post(URL, { name: query, book_type: filter })
-      .then(response => {
-        this.setState({
-          books: response.data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
 
   searchQueryChanged = event => {
     const { query } = this.state;
@@ -127,25 +112,33 @@ class App extends Component {
   };
 
   render() {
-    const { book, list } = this.props.books;
+    const { books, list } = this.props;
+    console.log('query: ', this.state.query);
+
+    console.log('list: ', list);
+    console.log('books: ', books);
 
     return (
       <React.Fragment>
-        <Header />
+        <Header
+          query={this.state.query}
+          searchQueryChanged={this.searchQueryChanged}
+        />
         <Aside />
-        <Main book={book} listView={list} />
+        <Main book={books} listView={list} />
       </React.Fragment>
     );
   }
 }
 
 // приклеиваем данные из store
-const mapStateToProps = store => {
-  return {
-    books: store.books,
-    list: store.list
-  };
-};
+const mapStateToProps = store => ({
+  books: store.books,
+  list: store.list
+});
 
 // в наш компонент App, с помощью connect(mapStateToProps)
-export default connect(mapStateToProps)(App);
+export default connect(
+  mapStateToProps,
+  { getBooks }
+)(App);

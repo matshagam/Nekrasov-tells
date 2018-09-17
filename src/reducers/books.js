@@ -1,13 +1,13 @@
 export const initialState = {
-  book: {
-    title: 'название книги',
-    description: 'описание',
-    year: 'год издания',
-    image: 'изображение обложки',
-    author: 'имена авторов'
-  }
+  books: []
 };
 
-export const booksReducer = (state = initialState) => {
-  return state;
+export const booksReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'GET_BOOKS':
+      return { ...state, books: action.payload };
+
+    default:
+      return state;
+  }
 };
