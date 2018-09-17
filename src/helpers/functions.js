@@ -8,10 +8,13 @@ export const _toggleClass = (target, name) => {
 
 export const _toggleAttribute = (target1, target2, name, value) => {
   target1.forEach(data => {
-    if (data.classList === target2) {
+    if (data.innerHTML === target2) {
       data.setAttribute(name, value);
     } else {
       data.removeAttribute(name);
     }
   });
 };
+
+export const FILTER = ['Везде', 'Книги', 'Периодика'];
+export const VIEW_MODE = ['Список', 'Плитка'];

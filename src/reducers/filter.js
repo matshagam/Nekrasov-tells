@@ -1,7 +1,7 @@
 import { CHANGE_FILTER } from '../actions/types';
 
 const initialState = {
-  filter: ['Везде', 'Книги', 'Периодика']
+  filter: ''
 };
 
 export const filterReducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ export const filterReducer = (state = initialState, action) => {
     case CHANGE_FILTER:
       return {
         ...state,
-        filter: [action.payload]
+        filter: action.payload
       };
 
     default:

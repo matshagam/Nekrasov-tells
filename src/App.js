@@ -13,8 +13,7 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      query: '',
-      filter: ''
+      query: ''
     };
   }
 
@@ -22,6 +21,9 @@ export default class App extends Component {
     document
       .querySelector('.filter')
       .children[0].setAttribute('disabled', 'disabled');
+    document
+      .querySelector('.aside')
+      .children[1].setAttribute('disabled', 'disabled');
   }
 
   searchQueryChanged = event => {
@@ -29,42 +31,6 @@ export default class App extends Component {
     this.setState({ query: event.target.value }, () => {
       if (query.length > 1 || query.length < 1) this.getDataFromServer();
     });
-  };
-
-  onClickChangeFilter = event => {
-    let filterEvent = event.target.classList;
-    let filterButtons = document.querySelectorAll('.filter button');
-
-    if (filterEvent.value.includes('books')) {
-      this.setState(
-        {
-          filter: 1
-        },
-        () => {
-          this.getDataFromServer();
-        }
-      );
-    } else if (filterEvent.value.includes('periodicals')) {
-      this.setState(
-        {
-          filter: 2
-        },
-        () => {
-          this.getDataFromServer();
-        }
-      );
-    } else {
-      this.setState(
-        {
-          filter: ''
-        },
-        () => {
-          this.getDataFromServer();
-        }
-      );
-    }
-
-    _toggleAttribute(filterButtons, filterEvent, 'disabled', 'disabled');
   };
 
   onClickChangeView = event => {
