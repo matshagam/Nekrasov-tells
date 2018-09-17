@@ -4,12 +4,12 @@ import { BookCard } from './components/bookCard';
 
 export class Main extends React.Component {
   render() {
-    const { books, listView } = this.props;
+    const { book, listView } = this.props.books;
 
     return (
       <main className="main">
         <BookCard
-          book={books}
+          book={book}
           listView={listView}
           // changeView={changeView}
           // key={index}
@@ -24,8 +24,7 @@ const mapStateToProps = store => {
   console.log('store: ', store);
 
   return {
-    books: store.books,
-    listView: store.listView
+    books: store.books
   };
 };
 // в наш компонент App, с помощью connect(mapStateToProps)
