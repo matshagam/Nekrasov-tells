@@ -8,8 +8,7 @@ export const Context = React.createContext();
 export default class ContextStore extends React.Component {
   constructor(props) {
     super(props);
-    console.log('props: ', props);
-
+    
     this.state = {
       query: '',
       books: [],
