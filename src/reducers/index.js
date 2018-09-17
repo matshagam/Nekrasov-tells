@@ -5,7 +5,8 @@ export const initialState = {
     year: 'год издания',
     image: 'изображение обложки',
     author: 'имена авторов'
-  }
+  },
+  listView: false
 };
 
 export const rootReducer = (state = initialState) => {

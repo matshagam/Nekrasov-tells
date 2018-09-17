@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import axios from 'axios';
 
 import { URL, _toggleAttribute, _toggleClass } from './helpers/functions';
@@ -7,7 +6,7 @@ import { URL, _toggleAttribute, _toggleClass } from './helpers/functions';
 import './styles/App.css';
 
 import { Header } from './componets/Header/Header.jsx';
-import { Main } from './componets/Main/Main.jsx';
+import Main from './componets/Main/Main.jsx';
 import { Aside } from './componets/Aside/Aside.jsx';
 
 class App extends Component {
@@ -137,12 +136,4 @@ class App extends Component {
   }
 }
 
-// приклеиваем данные из store
-const mapStateToProps = store => {
-  console.log(store); // посмотрим, что же у нас в store?
-  return {
-    books: store.books
-  };
-};
-// в наш компонент App, с помощью connect(mapStateToProps)
-export default connect(mapStateToProps)(App);
+export default App;
