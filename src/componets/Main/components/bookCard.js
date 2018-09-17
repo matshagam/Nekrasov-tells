@@ -2,7 +2,7 @@ import React from 'react';
 
 export const BookCard = ({ book, listView }) => {
   return (
-    <div>test reduce</div>
+    <div>test reducers</div>
     // <div className="book">
     //   <h3 className="book-title">{book.title}</h3>
     //   <img src={book.image} alt="book" className="book-image" />

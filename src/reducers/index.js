@@ -1,5 +1,11 @@
 export const initialState = {
-  user: 'Unknown User'
+  books: {
+    title: 'название книги',
+    description: 'описание',
+    year: 'год издания',
+    image: 'изображение обложки',
+    author: 'имена авторов'
+  }
 };
 
 export const rootReducer = (state = initialState) => {

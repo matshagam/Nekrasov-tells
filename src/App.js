@@ -141,7 +141,7 @@ class App extends Component {
 const mapStateToProps = store => {
   console.log(store); // посмотрим, что же у нас в store?
   return {
-    user: store.user
+    books: store.books
   };
 };
 // в наш компонент App, с помощью connect(mapStateToProps)
