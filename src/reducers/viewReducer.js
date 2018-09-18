@@ -1,4 +1,5 @@
 import { LIST_VIEW } from '../actions/types';
+
 export const initialState = {
   listView: false
 };
