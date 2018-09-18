@@ -5,25 +5,16 @@ import { getBooks } from '../../actions/BookAction';
 import BookCard from './components/bookCard';
 
 class Main extends React.Component {
-  state = {
-    selectedFilter: this.props.filter.filter
-  };
-
   componentDidMount() {
-    this.props.getBooks('', this.state.selectedFilter);
+    this.props.getBooks('', '');
   }
 
   componentWillReceiveProps(nextProps) {
     const { filter } = nextProps.filter;
     const { search } = this.props.search;
 
-    if (filter !== this.state.selectedFilter) {
-      this.setState(
-        {
-          selectedFilter: filter
-        },
-        () => this.props.getBooks(search, filter)
-      );
+    if (filter !== this.props.filter.filter) {
+      this.props.getBooks(search, filter);
     }
   }
 
