@@ -37,12 +37,7 @@ class Filter extends React.Component {
   }
 }
 
-const mapStateToProps = store => ({
-  filter: store.filter,
-  search: store.search
-});
-
 export default connect(
-  mapStateToProps,
+  null,
   { changeFilter }
 )(Filter);
