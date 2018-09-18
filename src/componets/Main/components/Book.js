@@ -9,14 +9,6 @@ class BookCard extends React.Component {
     this.props.getBooks('', '');
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { filter } = nextProps.filter;
-    const { search } = this.props.search;
-
-    if (filter !== this.props.filter.filter) {
-      this.props.getBooks(search, filter);
-    }
-  }
   render() {
     console.log('<BookCard/> render');
 
@@ -48,9 +40,7 @@ class BookCard extends React.Component {
 
 const mapStateToProps = store => ({
   books: store.books,
-  listView: store.listView,
-  filter: store.filter,
-  search: store.search
+  listView: store.listView
 });
 
 export default connect(
