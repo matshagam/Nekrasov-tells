@@ -1,13 +1,19 @@
 import React from 'react';
 
-import { ListView } from './components/listView';
-import { TileView } from './components/tileView';
+import { VIEW_MODE } from '../../helpers/functions';
 
-export const Aside = () => {
-  return (
-    <aside className="aside">
-      <ListView />
-      <TileView />
-    </aside>
-  );
-};
+import { Button } from '../reusable/Button';
+
+class Aside extends React.Component {
+  render() {
+    return (
+      <aside className="aside">
+        {VIEW_MODE.map((name, i) => {
+          return <Button name={name} key={i} />;
+        })}
+      </aside>
+    );
+  }
+}
+
+export default Aside;

@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { changeFilter } from '../../../../actions/FilterActions';
 import { FILTER, _toggleAttribute } from '../../../../helpers/functions';
-import { FilterButton } from './components/filterButton';
+
+import { Button } from '../../../reusable/Button';
 
 class Filter extends React.Component {
   handleFilterChange = e => {
@@ -19,8 +21,8 @@ class Filter extends React.Component {
       <section className="filter">
         {FILTER.map((name, i) => {
           return (
-            <FilterButton
-              changeFilter={this.handleFilterChange}
+            <Button
+              toggleButton={this.handleFilterChange}
               name={name}
               key={i}
             />
@@ -31,11 +33,7 @@ class Filter extends React.Component {
   }
 }
 
-const mapStateToProps = store => ({
-  filter: store.filter
-});
-
 export default connect(
-  mapStateToProps,
+  null,
   { changeFilter }
 )(Filter);
