@@ -14,27 +14,21 @@ class BookCard extends React.Component {
 
     const { listView } = this.props.listView;
     const { books } = this.props.books;
-    return (
-      <React.Fragment>
-        {books.map((book, i) => {
-          return (
-            <div className="book" key={i}>
-              <h3 className="book-title">{book.title}</h3>
-              <img src={book.image} alt="book" className="book-image" />
-              <section className="book-text">
-                {listView ? (
-                  <Description description={book.description} />
-                ) : null}
-                <div className="book-text-footer">
-                  <p className="book-text-footer-year">{book.year}</p>
-                  <p className="book-text-footer-author">{book.author}</p>
-                </div>
-              </section>
+    return books.map((book, i) => {
+      return (
+        <div className="book" key={i}>
+          <h3 className="book-title">{book.title}</h3>
+          <img src={book.image} alt="book" className="book-image" />
+          <section className="book-text">
+            {listView ? <Description description={book.description} /> : null}
+            <div className="book-text-footer">
+              <p className="book-text-footer-year">{book.year}</p>
+              <p className="book-text-footer-author">{book.author}</p>
             </div>
-          );
-        })}
-      </React.Fragment>
-    );
+          </section>
+        </div>
+      );
+    });
   }
 }
 
