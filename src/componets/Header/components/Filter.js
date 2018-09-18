@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { changeFilter } from '../../../../actions/FilterActions';
-import { FILTER, _toggleAttribute } from '../../../../helpers/functions';
-
-import { Button } from '../../../reusable/Button';
+import { changeFilter } from '../../../actions/FilterActions';
+import { FILTER, _toggleAttribute } from '../../../helpers/functions';
+import { Button } from '../../reusable/Button';
 
 class Filter extends React.Component {
   handleFilterChange = e => {

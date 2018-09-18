@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { VIEW_MODE } from '../../helpers/functions';
-
 import { Button } from '../reusable/Button';
 
 class Aside extends React.Component {
