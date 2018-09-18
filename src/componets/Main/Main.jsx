@@ -14,7 +14,6 @@ class Main extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps: ', nextProps);
     const { filter } = nextProps.filter;
     const { search } = this.props.search;
 
