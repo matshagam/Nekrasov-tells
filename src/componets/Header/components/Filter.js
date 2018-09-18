@@ -1,11 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { changeFilter } from '../../../actions/FilterActions';
+import { changeFilter } from '../../../actions/FilterAction';
 import { FILTER, _toggleAttribute } from '../../../helpers/functions';
 import { Button } from '../../reusable/Button';
 
 class Filter extends React.Component {
+  componentDidMount() {
+    document
+      .querySelector('.filter')
+      .children[0].setAttribute('disabled', 'disabled');
+  }
+
   handleFilterChange = e => {
     let filterEvent = e.target.innerHTML;
     let filterButtons = document.querySelectorAll('.filter button');
@@ -15,7 +21,6 @@ class Filter extends React.Component {
   };
 
   render() {
-    console.log('Filter: ');
     return (
       <section className="filter">
         {FILTER.map((name, i) => {

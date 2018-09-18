@@ -6,14 +6,15 @@ import { BookCard } from './components/bookCard';
 
 class Main extends React.Component {
   state = {
-    selectedFilter: this.props.filter.filter
+    selectedFilter: this.props.filter.filter,
+    listView: this.props.listView.listView
   };
 
   componentDidMount() {
     this.props.getBooks('', this.state.selectedFilter);
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     const { filter } = nextProps.filter;
 
     if (filter !== this.state.selectedFilter) {
@@ -24,16 +25,22 @@ class Main extends React.Component {
         () => this.props.getBooks('', filter)
       );
     }
+
+    if (nextProps.listView) {
+      this.setState({
+        listView: nextProps.listView.listView
+      });
+    }
   }
 
   render() {
-    console.log('Main: ');
-
     const { books } = this.props.books;
     return (
       <main className="main">
-        {books.map((data, i) => {
-          return <BookCard book={data} listView={false} key={i} />;
+        {books.map((book, i) => {
+          return (
+            <BookCard book={book} listView={this.state.listView} key={i} />
+          );
         })}
       </main>
     );
@@ -42,7 +49,8 @@ class Main extends React.Component {
 
 const mapStateToProps = store => ({
   books: store.books,
-  filter: store.filter
+  filter: store.filter,
+  listView: store.listView
 });
 
 export default connect(
