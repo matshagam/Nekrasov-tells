@@ -16,6 +16,7 @@ class Main extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { filter } = nextProps.filter;
+    const { search } = nextProps.search;
 
     if (filter !== this.state.selectedFilter) {
       this.setState(
@@ -30,6 +31,11 @@ class Main extends React.Component {
       this.setState({
         listView: nextProps.listView.listView
       });
+    }
+
+    if (search) {
+      if (search.length > 1 || search.length < 1)
+        this.props.getBooks(search, filter);
     }
   }
 
@@ -50,7 +56,8 @@ class Main extends React.Component {
 const mapStateToProps = store => ({
   books: store.books,
   filter: store.filter,
-  listView: store.listView
+  listView: store.listView,
+  search: store.search
 });
 
 export default connect(

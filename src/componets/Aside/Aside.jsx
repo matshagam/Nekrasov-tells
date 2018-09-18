@@ -22,6 +22,18 @@ class Aside extends React.Component {
     let mainBooks = mainSection.querySelectorAll('.main .book');
     let asideButtons = document.querySelectorAll('.aside button');
 
+    let windowResized = () => {
+      if (window.innerWidth < 480 && viewEvent === 'Список') {
+        this.props.changeView(true);
+
+        _toggleAttribute(asideButtons, 'Плитка', 'disabled', 'disabled');
+        _toggleClass(mainBooks, 'list-view');
+        mainSection.classList.toggle('list-view');
+
+        window.removeEventListener('resize', windowResized, false);
+      }
+    };
+
     switch (viewEvent) {
       case 'Список':
         window.addEventListener('resize', windowResized, false);
@@ -38,18 +50,6 @@ class Aside extends React.Component {
     _toggleAttribute(asideButtons, viewEvent, 'disabled', 'disabled');
     _toggleClass(mainBooks, 'list-view');
     mainSection.classList.toggle('list-view');
-
-    let windowResized = () => {
-      if (window.innerWidth < 480 && viewEvent === 'Список') {
-        this.props.changeView(true);
-
-        _toggleAttribute(asideButtons, 'Плитка', 'disabled', 'disabled');
-        _toggleClass(mainBooks, 'list-view');
-        mainSection.classList.toggle('list-view');
-
-        window.removeEventListener('resize', windowResized, false);
-      }
-    };
   };
 
   render() {
