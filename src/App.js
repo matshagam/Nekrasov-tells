@@ -7,6 +7,8 @@ import Main from './componets/Main/Main.jsx';
 import Aside from './componets/Aside/Aside.jsx';
 
 const App = () => {
+  console.log('<App/> render');
+
   return (
     <React.Fragment>
       <Header />

@@ -53,6 +53,8 @@ class Aside extends React.Component {
   };
 
   render() {
+    console.log('<Aside/> render');
+
     return (
       <aside className="aside">
         {VIEW_MODE.map((name, i) => {

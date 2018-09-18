@@ -21,6 +21,7 @@ class Filter extends React.Component {
   };
 
   render() {
+    console.log('<Filter/> render');
     return (
       <section className="filter">
         {FILTER.map((name, i) => {
