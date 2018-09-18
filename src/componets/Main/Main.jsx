@@ -2,12 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getBooks } from '../../actions/BookAction';
 
-import { BookCard } from './components/bookCard';
+import BookCard from './components/bookCard';
 
 class Main extends React.Component {
   state = {
-    selectedFilter: this.props.filter.filter,
-    listView: this.props.listView.listView
+    selectedFilter: this.props.filter.filter
   };
 
   componentDidMount() {
@@ -16,37 +15,25 @@ class Main extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { filter } = nextProps.filter;
-    const { search } = nextProps.search;
+    const { search } = this.props.search;
 
     if (filter !== this.state.selectedFilter) {
       this.setState(
         {
           selectedFilter: filter
         },
-        () => this.props.getBooks('', filter)
+        () => this.props.getBooks(search, filter)
       );
-    }
-
-    if (nextProps.listView) {
-      this.setState({
-        listView: nextProps.listView.listView
-      });
-    }
-
-    if (search) {
-      if (search.length > 1 || search.length < 1)
-        this.props.getBooks(search, filter);
     }
   }
 
   render() {
+    const { listView } = this.props.listView;
     const { books } = this.props.books;
     return (
       <main className="main">
         {books.map((book, i) => {
-          return (
-            <BookCard book={book} listView={this.state.listView} key={i} />
-          );
+          return <BookCard book={book} listView={listView} key={i} />;
         })}
       </main>
     );
@@ -55,8 +42,8 @@ class Main extends React.Component {
 
 const mapStateToProps = store => ({
   books: store.books,
-  filter: store.filter,
   listView: store.listView,
+  filter: store.filter,
   search: store.search
 });
 

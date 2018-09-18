@@ -1,10 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { searchChanged } from '../../../actions/SearchAction';
+import { getBooks } from '../../../actions/BookAction';
 
 class Search extends React.Component {
   searchQueryChanged = event => {
-    this.props.searchChanged(event.target.value);
+    const { value } = event.target;
+    const { filter } = this.props.filter;
+
+    this.props.searchChanged(value);
+
+    if (value.length > 1 || value.length < 1)
+      this.props.getBooks(value, filter);
   };
 
   render() {
@@ -24,10 +31,11 @@ class Search extends React.Component {
 }
 
 const mapStateToProps = store => ({
-  search: store.search
+  search: store.search,
+  filter: store.filter
 });
 
 export default connect(
   mapStateToProps,
-  { searchChanged }
+  { searchChanged, getBooks }
 )(Search);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const BookCard = ({ book, listView }) => {
+const BookCard = ({ book, listView }) => {
   return (
     <div className="book">
       <h3 className="book-title">{book.title}</h3>
@@ -26,3 +26,5 @@ export const BookCard = ({ book, listView }) => {
     </div>
   );
 };
+
+export default BookCard;
