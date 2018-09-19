@@ -31,7 +31,7 @@ class BookCard extends React.Component {
 
     return books.map((book, i) => {
       return (
-        <div className="book" key={book.year + i}>
+        <div className="book" key={i}>
           <h3 className="book-title">{book.title}</h3>
           <img src={book.image} alt="book" className="book-image" />
           <section className="book-text">

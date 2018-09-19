@@ -9,6 +9,11 @@ import {
 } from '../../../helpers/functions';
 
 class Button extends React.Component {
+  constructor() {
+    super();
+    this.onClickChangeView = this.onClickChangeView.bind(this);
+  }
+
   componentDidMount() {
     document
       .querySelector('.aside')

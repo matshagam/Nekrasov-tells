@@ -5,6 +5,11 @@ import { changeFilter } from '../../../actions/FilterAction';
 import { FILTER, _toggleAttribute } from '../../../helpers/functions';
 
 class Button extends React.Component {
+  constructor() {
+    super();
+    this.handleFilterChange = this.handleFilterChange.bind(this);
+  }
+
   componentDidMount() {
     document
       .querySelector('.filter')

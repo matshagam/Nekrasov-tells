@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import { searchChanged } from '../../../actions/SearchAction';
 
 class Search extends React.Component {
+  constructor() {
+    super();
+    this.searchQueryChanged = this.searchQueryChanged.bind(this);
+  }
+
   searchQueryChanged = event => {
     const { value } = event.target;
 
