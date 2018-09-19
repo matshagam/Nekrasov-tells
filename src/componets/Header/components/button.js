@@ -20,23 +20,25 @@ class Button extends React.Component {
   renderButtons = () => {
     const filter = this.state.filter;
 
-    return FILTER.map(name => {
-      return (
-        <button
-          disabled={name.id === filter ? true : false}
-          key={name.id}
-          id={name.id}
-          onClick={this.handleFilterChange}
-        >
-          {name.name}
-        </button>
-      );
-    });
+    return (
+      <React.Fragment>
+        {FILTER.map(name => (
+          <button
+            disabled={name.id === filter ? true : false}
+            key={name.id}
+            id={name.id}
+            onClick={this.handleFilterChange}
+          >
+            {name.name}
+          </button>
+        ))}
+      </React.Fragment>
+    );
   };
 
   render() {
     console.log('<Button/> render');
-    return <React.Fragment>{this.renderButtons()}</React.Fragment>;
+    return this.renderButtons();
   }
 }
 

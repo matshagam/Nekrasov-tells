@@ -28,30 +28,32 @@ class Book extends React.Component {
     const { books } = this.props.data;
     const { listView } = this.props.view;
 
-    return books.map((book, i) => {
-      return (
-        <div
-          className={!listView ? 'book' : 'book list-view'}
-          key={book.year + i}
-        >
-          <h3 className="book-title">{book.title}</h3>
-          <img src={book.image} alt="book" className="book-image" />
-          <section className="book-text">
-            <Description description={book.description} />
-            <div className="book-text-footer">
-              <p className="book-text-footer-year">{book.year}</p>
-              <p className="book-text-footer-author">{book.author}</p>
-            </div>
-          </section>
-        </div>
-      );
-    });
+    return (
+      <React.Fragment>
+        {books.map((book, i) => (
+          <div
+            className={!listView ? 'book' : 'book list-view'}
+            key={book.year + i}
+          >
+            <h3 className="book-title">{book.title}</h3>
+            <img src={book.image} alt="book" className="book-image" />
+            <section className="book-text">
+              <Description description={book.description} />
+              <div className="book-text-footer">
+                <p className="book-text-footer-year">{book.year}</p>
+                <p className="book-text-footer-author">{book.author}</p>
+              </div>
+            </section>
+          </div>
+        ))}
+      </React.Fragment>
+    );
   };
 
   render() {
     console.log('<Book/> render');
 
-    return <React.Fragment>{this.renderBooks()}</React.Fragment>;
+    return this.renderBooks();
   }
 }
 
