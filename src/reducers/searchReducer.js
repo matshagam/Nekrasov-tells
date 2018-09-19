@@ -1,13 +1,13 @@
 import { SEARCH } from '../actions/types';
 
 export const initialState = {
-  search: ''
+  query: ''
 };
 
 export const searchReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH:
-      return { ...state, search: action.payload };
+      return { ...state, query: action.payload };
 
     default:
       return state;

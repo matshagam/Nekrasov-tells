@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   books: booksReducer,
   filter: filterReducer,
   listView: viewReducer,
-  search: searchReducer
+  query: searchReducer
 });
 
 export default rootReducer;

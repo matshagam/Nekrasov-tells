@@ -23,7 +23,7 @@ class Button extends React.Component {
 
     let windowResized = () => {
       if (window.innerWidth < 480 && viewEvent === 'Список') {
-        this.props.changeView(true);
+        this.props.changeView(false);
 
         _toggleAttribute(asideButtons, 'Плитка', 'disabled', 'disabled');
         _toggleClass(mainBooks, 'list-view');
@@ -36,11 +36,11 @@ class Button extends React.Component {
     switch (viewEvent) {
       case 'Список':
         window.addEventListener('resize', windowResized, false);
-        this.props.changeView(false);
+        this.props.changeView(true);
         break;
       case 'Плитка':
         window.removeEventListener('resize', windowResized, false);
-        this.props.changeView(true);
+        this.props.changeView(false);
         break;
       default:
         break;
@@ -54,10 +54,10 @@ class Button extends React.Component {
   render() {
     console.log('<Button/> render');
 
-    return VIEW_MODE.map((name, i) => {
+    return VIEW_MODE.map(name => {
       return (
-        <button onClick={this.onClickChangeView} key={i}>
-          {name}
+        <button onClick={this.onClickChangeView} id={name.id} key={name.id}>
+          {name.name}
         </button>
       );
     });
