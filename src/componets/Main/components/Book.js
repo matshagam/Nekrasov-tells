@@ -12,7 +12,7 @@ class BookCard extends React.Component {
     this.props.getBooks(query, filter);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { filter } = nextProps.filters;
     const { query } = nextProps.search;
 
