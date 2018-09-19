@@ -5,13 +5,6 @@ import { getBooks } from '../../../actions/BookAction';
 import BookDescription from './BookDescription';
 
 class Book extends React.Component {
-  componentDidMount() {
-    const { filter } = this.props.filters;
-    const { query } = this.props.search;
-
-    this.props.getBooks(query, filter);
-  }
-
   UNSAFE_componentWillReceiveProps(nextProps) {
     const { filter } = nextProps.filters;
     const { query } = nextProps.search;

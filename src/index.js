@@ -6,6 +6,10 @@ import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 import store from './store/configureStore';
 
+import { getBooks } from './actions/BookAction';
+
+store.dispatch(getBooks('', ''));
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
