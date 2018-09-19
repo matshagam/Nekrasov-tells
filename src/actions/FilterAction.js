@@ -1,7 +1,6 @@
 import { CHANGE_FILTER } from './types';
 
 export const changeFilter = filter => {
-  console.log('filter: ', filter);
   return {
     type: CHANGE_FILTER,
     payload:

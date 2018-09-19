@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 
 class Description extends React.Component {
   render() {
+    console.log('<Description/> render');
+
     const { description } = this.props;
     const { listView } = this.props.view;
 
-    console.log('listView: ', listView);
     return listView ? (
       <p
         className="book-text-description"
