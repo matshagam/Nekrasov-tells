@@ -15,6 +15,7 @@ class Button extends React.Component {
     this.setState({
       filter: +event.target.getAttribute('id')
     });
+    console.log(this);
   };
 
   renderButtons = () => {
@@ -22,14 +23,14 @@ class Button extends React.Component {
 
     return (
       <React.Fragment>
-        {FILTER.map(name => (
+        {FILTER.map(({ id, name }) => (
           <button
-            disabled={name.id === filter ? true : false}
-            key={name.id}
-            id={name.id}
+            disabled={id === filter ? true : false}
+            key={id}
+            id={id}
             onClick={this.handleFilterChange}
           >
-            {name.name}
+            {name}
           </button>
         ))}
       </React.Fragment>

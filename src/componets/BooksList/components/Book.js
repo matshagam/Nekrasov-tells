@@ -23,7 +23,7 @@ class Book extends React.Component {
 
     return (
       <React.Fragment>
-        {books.map(({ book: title, description, image, author, year }, i) => (
+        {books.map(({ title, description, image, author, year }, i) => (
           <div className={!listView ? 'book' : 'book list-view'} key={year + i}>
             <h3 className="book-title">{title}</h3>
             <img src={image} alt="book" className="book-image" />

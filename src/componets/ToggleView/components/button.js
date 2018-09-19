@@ -47,14 +47,14 @@ class Button extends React.Component {
 
     return (
       <React.Fragment>
-        {VIEW_MODE.map(name => (
+        {VIEW_MODE.map(({ id, name }) => (
           <button
-            disabled={name.id === view ? true : false}
+            disabled={id === view ? true : false}
             onClick={this.onClickChangeView}
-            id={name.id}
-            key={name.id}
+            id={id}
+            key={id}
           >
-            {name.name}
+            {name}
           </button>
         ))}
       </React.Fragment>
