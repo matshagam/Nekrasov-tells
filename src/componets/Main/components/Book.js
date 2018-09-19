@@ -46,7 +46,7 @@ class Book extends React.Component {
   };
 
   render() {
-    console.log('<BookCard/> render');
+    console.log('<Book/> render');
 
     return <React.Fragment>{this.renderBooks()}</React.Fragment>;
   }
