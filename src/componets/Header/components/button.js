@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { changeFilter } from '../../../actions/FilterAction';
-import { FILTER, _toggleAttribute } from '../../../helpers/functions';
+import { FILTER } from '../../../helpers/functions';
 
 class Button extends React.Component {
   state = {

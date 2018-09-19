@@ -2,11 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { changeView } from '../../../actions/ViewAction';
-import {
-  VIEW_MODE,
-  _toggleClass,
-  _toggleAttribute
-} from '../../../helpers/functions';
+import { VIEW_MODE } from '../../../helpers/functions';
 
 class Button extends React.Component {
   state = {
@@ -15,8 +11,6 @@ class Button extends React.Component {
 
   onClickChangeView = event => {
     let viewEvent = event.target.innerHTML;
-    let mainSection = document.querySelector('.main');
-    let mainBooks = mainSection.querySelectorAll('.main .book');
 
     let windowResized = () => {
       if (window.innerWidth < 480 && viewEvent === 'Список') {
@@ -25,9 +19,6 @@ class Button extends React.Component {
         this.setState({
           view: +event.target.getAttribute('id')
         });
-
-        _toggleClass(mainBooks, 'list-view');
-        mainSection.classList.toggle('list-view');
 
         window.removeEventListener('resize', windowResized, false);
       }
@@ -49,9 +40,6 @@ class Button extends React.Component {
     this.setState({
       view: +event.target.getAttribute('id')
     });
-
-    _toggleClass(mainBooks, 'list-view');
-    mainSection.classList.toggle('list-view');
   };
 
   renderButtons = () => {

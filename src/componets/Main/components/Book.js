@@ -24,14 +24,13 @@ class Book extends React.Component {
     }
   }
 
-  render() {
-    console.log('<BookCard/> render');
-
+  renderBooks = () => {
     const { books } = this.props.data;
+    const { listView } = this.props.view;
 
     return books.map((book, i) => {
       return (
-        <div className="book" key={i}>
+        <div className={!listView ? 'book' : 'book list-view'} key={i}>
           <h3 className="book-title">{book.title}</h3>
           <img src={book.image} alt="book" className="book-image" />
           <section className="book-text">
@@ -44,13 +43,20 @@ class Book extends React.Component {
         </div>
       );
     });
+  };
+
+  render() {
+    console.log('<BookCard/> render');
+
+    return <React.Fragment>{this.renderBooks()}</React.Fragment>;
   }
 }
 
 const mapStateToProps = store => ({
   data: store.books,
   filters: store.filter,
-  search: store.query
+  search: store.query,
+  view: store.listView
 });
 
 export default connect(
