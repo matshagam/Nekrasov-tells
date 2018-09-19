@@ -45,23 +45,25 @@ class Button extends React.Component {
   renderButtons = () => {
     const view = this.state.view;
 
-    return VIEW_MODE.map(name => {
-      return (
-        <button
-          disabled={name.id === view ? true : false}
-          onClick={this.onClickChangeView}
-          id={name.id}
-          key={name.id}
-        >
-          {name.name}
-        </button>
-      );
-    });
+    return (
+      <React.Fragment>
+        {VIEW_MODE.map(name => (
+          <button
+            disabled={name.id === view ? true : false}
+            onClick={this.onClickChangeView}
+            id={name.id}
+            key={name.id}
+          >
+            {name.name}
+          </button>
+        ))}
+      </React.Fragment>
+    );
   };
 
   render() {
     console.log('<Button/> render');
-    return <React.Fragment>{this.renderButtons()}</React.Fragment>;
+    return this.renderButtons();
   }
 }
 
