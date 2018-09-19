@@ -56,7 +56,11 @@ class Button extends React.Component {
 
     return VIEW_MODE.map(name => {
       return (
-        <button onClick={this.onClickChangeView} id={name.id} key={name.id}>
+        <button
+          onClick={this.onClickChangeView}
+          id={'aside-btn-' + name.id}
+          key={name.id}
+        >
           {name.name}
         </button>
       );

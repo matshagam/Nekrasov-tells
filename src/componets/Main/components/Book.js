@@ -6,24 +6,15 @@ import Description from './book.description';
 
 class BookCard extends React.Component {
   componentDidMount() {
-    this.props.getBooks('', '');
+    const { filter } = this.props.filters;
+    const { query } = this.props.search;
+
+    this.props.getBooks(query, filter);
   }
 
   componentWillReceiveProps(nextProps) {
     const { filter } = nextProps.filters;
     const { query } = nextProps.search;
-
-    // console.log(
-    //   'books filter: ',
-    //   nextProps.filters.filter,
-    //   this.props.filters.filter
-    // );
-
-    // console.log(
-    //   'books query: ',
-    //   nextProps.search.query,
-    //   this.props.search.query
-    // );
 
     if (
       filter !== this.props.filters.filter ||
@@ -36,7 +27,7 @@ class BookCard extends React.Component {
   render() {
     console.log('<BookCard/> render');
 
-    const { books } = this.props.books;
+    const { books } = this.props.data;
 
     return books.map((book, i) => {
       return (
@@ -57,7 +48,7 @@ class BookCard extends React.Component {
 }
 
 const mapStateToProps = store => ({
-  books: store.books,
+  data: store.books,
   filters: store.filter,
   search: store.query
 });

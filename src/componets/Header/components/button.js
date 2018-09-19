@@ -24,7 +24,11 @@ class Button extends React.Component {
 
     return FILTER.map(name => {
       return (
-        <button key={name.id} id={name.id} onClick={this.handleFilterChange}>
+        <button
+          key={name.id}
+          id={'filter-btn-' + name.id}
+          onClick={this.handleFilterChange}
+        >
           {name.name}
         </button>
       );
