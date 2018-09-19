@@ -1,29 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-class BookDescription extends React.Component {
-  render() {
-    console.log('<Description/> render');
+const BookDescription = ({ description }) => {
+  console.log('<Description/> render');
 
-    const { description } = this.props;
-    const { listView } = this.props.view;
+  return (
+    <p
+      className="book-text-description"
+      style={description === null ? { margin: 'auto', opacity: 0.5 } : null}
+    >
+      {description !== null ? description : 'Описания нет'}
+    </p>
+  );
+};
 
-    return listView ? (
-      <p
-        className="book-text-description"
-        style={description === null ? { margin: 'auto', opacity: 0.5 } : null}
-      >
-        {description !== null ? description : 'Описания нет'}
-      </p>
-    ) : null;
-  }
-}
-
-const mapStateToProps = store => ({
-  view: store.listView
-});
-
-export default connect(
-  mapStateToProps,
-  null
-)(BookDescription);
+export default BookDescription;

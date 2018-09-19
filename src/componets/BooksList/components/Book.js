@@ -31,7 +31,9 @@ class Book extends React.Component {
             <h3 className="book-title">{book.title}</h3>
             <img src={book.image} alt="book" className="book-image" />
             <section className="book-text">
-              <BookDescription description={book.description} />
+              {listView ? (
+                <BookDescription description={book.description} />
+              ) : null}
               <div className="book-text-footer">
                 <p className="book-text-footer-year">{book.year}</p>
                 <p className="book-text-footer-author">{book.author}</p>
