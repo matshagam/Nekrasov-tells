@@ -2,7 +2,7 @@ import React from 'react';
 
 import Book from './components/Book';
 
-const Main = () => {
+const BooksList = () => {
   console.log('<Main/> render');
 
   return (
@@ -12,4 +12,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default BooksList;

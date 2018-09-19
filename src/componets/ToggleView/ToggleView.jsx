@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from './components/button';
 
-const Aside = () => {
+const ToggleView = () => {
   console.log('<Aside/> render');
 
   return (
@@ -12,4 +12,4 @@ const Aside = () => {
   );
 };
 
-export default Aside;
+export default ToggleView;

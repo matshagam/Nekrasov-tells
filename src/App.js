@@ -3,8 +3,8 @@ import React from 'react';
 import './styles/App.css';
 
 import Header from './componets/Header/Header.jsx';
-import Main from './componets/Main/Main.jsx';
-import Aside from './componets/Aside/Aside.jsx';
+import BooksList from './componets/BooksList/BooksList.jsx';
+import ToggleView from './componets/ToggleView/ToggleView.jsx';
 
 const App = () => {
   console.log('<App/> render');
@@ -12,8 +12,8 @@ const App = () => {
   return (
     <React.Fragment>
       <Header />
-      <Aside />
-      <Main />
+      <ToggleView />
+      <BooksList />
     </React.Fragment>
   );
 };

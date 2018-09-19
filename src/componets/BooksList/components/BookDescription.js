@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-class Description extends React.Component {
+class BookDescription extends React.Component {
   render() {
     console.log('<Description/> render');
 
@@ -26,4 +26,4 @@ const mapStateToProps = store => ({
 export default connect(
   mapStateToProps,
   null
-)(Description);
+)(BookDescription);
