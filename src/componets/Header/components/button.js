@@ -5,39 +5,38 @@ import { changeFilter } from '../../../actions/FilterAction';
 import { FILTER, _toggleAttribute } from '../../../helpers/functions';
 
 class Button extends React.Component {
-  constructor() {
-    super();
-    this.handleFilterChange = this.handleFilterChange.bind(this);
-  }
-
-  componentDidMount() {
-    document
-      .querySelector('.filter')
-      .children[0].setAttribute('disabled', 'disabled');
-  }
-
-  handleFilterChange = e => {
-    let filterEvent = e.target.innerHTML;
-    let filterButtons = document.querySelectorAll('.filter button');
-
-    this.props.changeFilter(filterEvent);
-    _toggleAttribute(filterButtons, filterEvent, 'disabled', 'disabled');
+  state = {
+    filter: 1
   };
 
-  render() {
-    console.log('<Button/> render');
+  handleFilterChange = event => {
+    let filterEvent = event.target.innerHTML;
+    this.props.changeFilter(filterEvent);
+    this.setState({
+      filter: +event.target.getAttribute('id')
+    });
+  };
+
+  renderButtons = () => {
+    const filter = this.state.filter;
 
     return FILTER.map(name => {
       return (
         <button
+          disabled={name.id === filter ? true : false}
           key={name.id}
-          id={'filter-btn-' + name.id}
+          id={name.id}
           onClick={this.handleFilterChange}
         >
           {name.name}
         </button>
       );
     });
+  };
+
+  render() {
+    console.log('<Button/> render');
+    return <React.Fragment>{this.renderButtons()}</React.Fragment>;
   }
 }
 

@@ -9,28 +9,23 @@ import {
 } from '../../../helpers/functions';
 
 class Button extends React.Component {
-  constructor() {
-    super();
-    this.onClickChangeView = this.onClickChangeView.bind(this);
-  }
-
-  componentDidMount() {
-    document
-      .querySelector('.aside')
-      .children[1].setAttribute('disabled', 'disabled');
-  }
+  state = {
+    view: 2
+  };
 
   onClickChangeView = event => {
     let viewEvent = event.target.innerHTML;
     let mainSection = document.querySelector('.main');
     let mainBooks = mainSection.querySelectorAll('.main .book');
-    let asideButtons = document.querySelectorAll('.aside button');
 
     let windowResized = () => {
       if (window.innerWidth < 480 && viewEvent === 'Список') {
         this.props.changeView(false);
 
-        _toggleAttribute(asideButtons, 'Плитка', 'disabled', 'disabled');
+        this.setState({
+          view: +event.target.getAttribute('id')
+        });
+
         _toggleClass(mainBooks, 'list-view');
         mainSection.classList.toggle('list-view');
 
@@ -51,25 +46,34 @@ class Button extends React.Component {
         break;
     }
 
-    _toggleAttribute(asideButtons, viewEvent, 'disabled', 'disabled');
+    this.setState({
+      view: +event.target.getAttribute('id')
+    });
+
     _toggleClass(mainBooks, 'list-view');
     mainSection.classList.toggle('list-view');
   };
 
-  render() {
-    console.log('<Button/> render');
+  renderButtons = () => {
+    const view = this.state.view;
 
     return VIEW_MODE.map(name => {
       return (
         <button
+          disabled={name.id === view ? true : false}
           onClick={this.onClickChangeView}
-          id={'aside-btn-' + name.id}
+          id={name.id}
           key={name.id}
         >
           {name.name}
         </button>
       );
     });
+  };
+
+  render() {
+    console.log('<Button/> render');
+    return <React.Fragment>{this.renderButtons()}</React.Fragment>;
   }
 }
 

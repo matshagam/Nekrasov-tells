@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getBooks } from '../../../actions/BookAction';
 
-import Description from './book.description';
+import Description from './Description';
 
-class BookCard extends React.Component {
+class Book extends React.Component {
   componentDidMount() {
     const { filter } = this.props.filters;
     const { query } = this.props.search;
@@ -56,4 +56,4 @@ const mapStateToProps = store => ({
 export default connect(
   mapStateToProps,
   { getBooks }
-)(BookCard);
+)(Book);

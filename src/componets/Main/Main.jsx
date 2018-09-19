@@ -1,13 +1,13 @@
 import React from 'react';
 
-import BookCard from './components/Book';
+import Book from './components/Book';
 
 const Main = () => {
   console.log('<Main/> render');
 
   return (
     <main className="main">
-      <BookCard />;
+      <Book />;
     </main>
   );
 };
