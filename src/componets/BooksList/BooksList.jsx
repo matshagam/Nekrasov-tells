@@ -3,7 +3,7 @@ import React from 'react';
 import Book from './components/Book';
 
 const BooksList = () => {
-  console.log('<Main/> render');
+  console.log('<BooksList/> render');
 
   return (
     <main className="main">

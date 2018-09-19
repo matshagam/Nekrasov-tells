@@ -5,7 +5,7 @@ import { getBooks } from '../../../actions/BookAction';
 import BookDescription from './BookDescription';
 
 class Book extends React.Component {
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillUpdate(nextProps) {
     const { filter } = nextProps.filters;
     const { query } = nextProps.search;
 
@@ -23,20 +23,15 @@ class Book extends React.Component {
 
     return (
       <React.Fragment>
-        {books.map((book, i) => (
-          <div
-            className={!listView ? 'book' : 'book list-view'}
-            key={book.year + i}
-          >
-            <h3 className="book-title">{book.title}</h3>
-            <img src={book.image} alt="book" className="book-image" />
+        {books.map(({ book: title, description, image, author, year }, i) => (
+          <div className={!listView ? 'book' : 'book list-view'} key={year + i}>
+            <h3 className="book-title">{title}</h3>
+            <img src={image} alt="book" className="book-image" />
             <section className="book-text">
-              {listView ? (
-                <BookDescription description={book.description} />
-              ) : null}
+              {listView ? <BookDescription description={description} /> : null}
               <div className="book-text-footer">
-                <p className="book-text-footer-year">{book.year}</p>
-                <p className="book-text-footer-author">{book.author}</p>
+                <p className="book-text-footer-year">{year}</p>
+                <p className="book-text-footer-author">{author}</p>
               </div>
             </section>
           </div>

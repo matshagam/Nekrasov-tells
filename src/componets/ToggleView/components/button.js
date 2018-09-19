@@ -62,7 +62,7 @@ class Button extends React.Component {
   };
 
   render() {
-    console.log('<Button/> render');
+    console.log('in ToggleView <Button/> render');
     return this.renderButtons();
   }
 }

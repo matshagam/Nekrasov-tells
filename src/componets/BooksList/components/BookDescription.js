@@ -1,7 +1,7 @@
 import React from 'react';
 
 const BookDescription = ({ description }) => {
-  console.log('<Description/> render');
+  console.log('<BookDescription/> render');
 
   return (
     <p

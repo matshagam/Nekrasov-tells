@@ -37,7 +37,7 @@ class Button extends React.Component {
   };
 
   render() {
-    console.log('<Button/> render');
+    console.log('in Header <Button/> render');
     return this.renderButtons();
   }
 }

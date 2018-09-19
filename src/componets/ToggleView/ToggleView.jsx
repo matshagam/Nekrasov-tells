@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Button from './components/button';
+import Button from './components/Button';
 
 const ToggleView = () => {
-  console.log('<Aside/> render');
+  console.log('<ToggleView/> render');
 
   return (
     <aside className="aside">
