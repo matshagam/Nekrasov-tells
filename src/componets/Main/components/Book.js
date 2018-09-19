@@ -30,7 +30,10 @@ class Book extends React.Component {
 
     return books.map((book, i) => {
       return (
-        <div className={!listView ? 'book' : 'book list-view'} key={i}>
+        <div
+          className={!listView ? 'book' : 'book list-view'}
+          key={book.year + i}
+        >
           <h3 className="book-title">{book.title}</h3>
           <img src={book.image} alt="book" className="book-image" />
           <section className="book-text">
