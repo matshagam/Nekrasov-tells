@@ -7,8 +7,6 @@ import BooksList from './componets/BooksList/BooksList.jsx';
 import ToggleView from './componets/ToggleView/ToggleView.jsx';
 
 const App = () => {
-  console.log('<App/> render');
-
   return (
     <React.Fragment>
       <Header />

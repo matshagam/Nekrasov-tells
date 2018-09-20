@@ -1,8 +1,6 @@
 import React from 'react';
 
 const BookDescription = ({ description }) => {
-  console.log('<BookDescription/> render');
-
   return (
     <p
       className="book-text-description"

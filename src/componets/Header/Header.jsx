@@ -5,8 +5,6 @@ import Search from './components/Search';
 import Filter from './components/Filter';
 
 const Header = () => {
-  console.log('<Header/> render');
-
   return (
     <header className="header">
       <img src={logo} className="header-logo" alt="logo" />

@@ -5,8 +5,6 @@ import { getBooks } from '../../actions/BookAction';
 import Book from './components/Book';
 
 const BooksList = ({ data }) => {
-  console.log('<BooksList/> render');
-
   return (
     <main className="main">
       {data.loading ? (

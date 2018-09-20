@@ -39,8 +39,6 @@ const FilterButton = ({ getBooks, changeFilter, search, filters }) => {
     { id: 3, name: 'Периодика' }
   ];
 
-  console.log('in Header <Button/> render');
-
   return FILTER.map(({ id, name }) => (
     <button
       disabled={id === filter ? true : false}
