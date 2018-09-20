@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { connect } from 'react-redux';
 
 import { changeFilter } from '../../../actions/FilterAction';
@@ -15,7 +16,6 @@ class Button extends React.Component {
     this.setState({
       filter: +event.target.getAttribute('id')
     });
-    console.log(this);
   };
 
   renderButtons = () => {
@@ -25,6 +25,7 @@ class Button extends React.Component {
       <React.Fragment>
         {FILTER.map(({ id, name }) => (
           <button
+            ref={'button' + id}
             disabled={id === filter ? true : false}
             key={id}
             id={id}
