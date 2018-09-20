@@ -1,15 +1,15 @@
 import { CHANGE_FILTER } from '../actions/types';
 
-const initialState = {
+export const filterState = {
   filter: ''
 };
 
-export const filterReducer = (state = initialState, action) => {
+export const filterReducer = (state = filterState, action) => {
   switch (action.type) {
     case CHANGE_FILTER:
       return {
         ...state,
-        filter: action.payload
+        filter: action.filter
       };
 
     default:

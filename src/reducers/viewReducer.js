@@ -7,7 +7,7 @@ export const initialState = {
 export const viewReducer = (state = initialState, action) => {
   switch (action.type) {
     case LIST_VIEW:
-      return { ...state, listView: action.payload };
+      return { ...state, listView: action.listView };
 
     default:
       return state;

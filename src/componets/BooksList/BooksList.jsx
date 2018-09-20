@@ -1,15 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Book from './components/Book';
 
-const BooksList = () => {
-  console.log('<BooksList/> render');
+class BooksList extends React.Component {
+  render() {
+    console.log('<BooksList/> render');
 
-  return (
-    <main className="main">
-      <Book />;
-    </main>
-  );
-};
+    const { loading } = this.props.data;
 
-export default BooksList;
+    return (
+      <main className="main">
+        {loading ? (
+          <Book />
+        ) : (
+          <p className="main-loading">Получение данных с сервера...</p>
+        )}
+      </main>
+    );
+  }
+}
+
+const mapStateToProps = store => ({
+  data: store.books
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(BooksList);

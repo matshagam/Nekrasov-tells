@@ -1,9 +1,9 @@
-import { CHANGE_FILTER } from './types';
+import { CHANGE_FILTER, GET_BOOKS } from './types';
 
 export const changeFilter = filter => {
   return {
     type: CHANGE_FILTER,
-    payload:
+    filter:
       filter === 'Везде'
         ? ''
         : filter === 'Книги'

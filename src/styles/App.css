@@ -66,6 +66,8 @@ button {
   justify-content: center;
   margin: 55px auto;
   max-width: 1200px; }
+  .main-loading {
+    margin-top: 50%; }
   .main .book {
     padding: 16px;
     display: flex;

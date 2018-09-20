@@ -83,6 +83,10 @@ button {
   margin: 55px auto;
   max-width: 1200px;
 
+  &-loading {
+    margin-top: 50%;
+  }
+
   .book {
     padding: 16px;
     display: flex;
