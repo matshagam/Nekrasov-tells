@@ -1,10 +1,8 @@
-import axios from 'axios';
-import { URL } from '../helpers/api';
+import { XMLHttpRequest } from '../helpers/api';
 import { GET_BOOKS, GET_ERRORS, GET_SUCCESS } from './types';
 
 export const getBooks = (query, filter) => dispatch => {
-  axios
-    .post(URL, { name: query, book_type: filter })
+  XMLHttpRequest(query, filter)
     .then(response => {
       if (response.status !== 200) {
         throw Error(response.statusText);
@@ -27,7 +25,6 @@ export const getBooks = (query, filter) => dispatch => {
     .catch(error =>
       dispatch({
         type: GET_ERRORS,
-        loading: false,
         error: error
       })
     );

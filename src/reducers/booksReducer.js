@@ -18,7 +18,6 @@ export const booksReducer = (state = initialState, action) => {
     case GET_ERRORS:
       return {
         ...state,
-        loading: action.loading,
         error: action.error
       };
 
