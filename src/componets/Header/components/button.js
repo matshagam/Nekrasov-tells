@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { changeFilter } from '../../../actions/FilterAction';
-import { FILTER } from '../../../helpers/functions';
 
 class Button extends React.Component {
   state = {
@@ -20,6 +19,11 @@ class Button extends React.Component {
 
   renderButtons = () => {
     const filter = this.state.filter;
+    const FILTER = [
+      { id: 1, name: 'Везде' },
+      { id: 2, name: 'Книги' },
+      { id: 3, name: 'Периодика' }
+    ];
 
     return (
       <React.Fragment>

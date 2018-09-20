@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { changeView } from '../../../actions/ViewAction';
-import { VIEW_MODE } from '../../../helpers/functions';
 
 class Button extends React.Component {
   state = {
@@ -44,6 +43,7 @@ class Button extends React.Component {
 
   renderButtons = () => {
     const view = this.state.view;
+    const VIEW_MODE = [{ id: 1, name: 'Список' }, { id: 2, name: 'Плитка' }];
 
     return (
       <React.Fragment>

@@ -18,10 +18,11 @@ class Book extends React.Component {
   }
 
   renderBooks = () => {
-    const { books } = this.props.data;
     const { listView } = this.props.view;
+    const { loading } = this.props.data;
+    const { books } = this.props.data;
 
-    return (
+    return loading ? (
       <React.Fragment>
         {books.map(({ title, description, image, author, year }, i) => (
           <div className={listView ? 'book list-view' : 'book'} key={year + i}>
@@ -37,11 +38,14 @@ class Book extends React.Component {
           </div>
         ))}
       </React.Fragment>
+    ) : (
+      <p>Получение данных с сервера...</p>
     );
   };
 
   render() {
     console.log('<Book/> render');
+
     return this.renderBooks();
   }
 }
