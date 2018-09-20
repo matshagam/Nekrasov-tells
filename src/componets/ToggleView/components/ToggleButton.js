@@ -3,21 +3,15 @@ import { connect } from 'react-redux';
 
 import { changeView } from '../../../actions/ViewAction';
 
-class ToggleButton extends React.Component {
-  state = {
-    view: 2
-  };
+const ToggleButton = ({ changeView, views }) => {
+  let view = 2;
 
-  onClickChangeView = event => {
+  const onClickChangeView = event => {
     let viewEvent = event.target.innerHTML;
 
     let windowResized = () => {
       if (window.innerWidth < 480 && viewEvent === 'Список') {
-        this.props.changeView(false);
-
-        this.setState({
-          view: +event.target.getAttribute('id')
-        });
+        changeView(false);
 
         window.removeEventListener('resize', windowResized, false);
       }
@@ -26,48 +20,38 @@ class ToggleButton extends React.Component {
     switch (viewEvent) {
       case 'Список':
         window.addEventListener('resize', windowResized, false);
-        this.props.changeView(true);
+        changeView(true);
         break;
       case 'Плитка':
         window.removeEventListener('resize', windowResized, false);
-        this.props.changeView(false);
+        changeView(false);
         break;
       default:
         break;
     }
-
-    this.setState({
-      view: +event.target.getAttribute('id')
-    });
   };
 
-  renderButtons = () => {
-    const { view } = this.state;
-    const VIEW_MODE = [{ id: 1, name: 'Список' }, { id: 2, name: 'Плитка' }];
+  view = views.listView ? 1 : 2;
 
-    return (
-      <React.Fragment>
-        {VIEW_MODE.map(({ id, name }) => (
-          <button
-            disabled={id === view ? true : false}
-            onClick={this.onClickChangeView}
-            id={id}
-            key={id}
-          >
-            {name}
-          </button>
-        ))}
-      </React.Fragment>
-    );
-  };
+  const VIEW_MODE = [{ id: 1, name: 'Список' }, { id: 2, name: 'Плитка' }];
 
-  render() {
-    console.log('in ToggleView <Button/> render');
-    return this.renderButtons();
-  }
-}
+  return VIEW_MODE.map(({ id, name }) => (
+    <button
+      disabled={id === view ? true : false}
+      onClick={event => onClickChangeView(event)}
+      id={id}
+      key={id}
+    >
+      {name}
+    </button>
+  ));
+};
+
+const mapStateToProps = store => ({
+  views: store.listView
+});
 
 export default connect(
-  null,
+  mapStateToProps,
   { changeView }
 )(ToggleButton);
