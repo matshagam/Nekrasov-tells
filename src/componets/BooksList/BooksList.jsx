@@ -1,25 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getBooks } from '../../actions/BookAction';
 
 import Book from './components/Book';
 
-class BooksList extends React.Component {
-  render() {
-    console.log('<BooksList/> render');
+const BooksList = ({ data }) => {
+  console.log('<BooksList/> render');
 
-    const { loading } = this.props.data;
-
-    return (
-      <main className="main">
-        {loading ? (
-          <Book />
-        ) : (
-          <p className="main-loading">Получение данных с сервера...</p>
-        )}
-      </main>
-    );
-  }
-}
+  return (
+    <main className="main">
+      {data.loading ? (
+        <Book />
+      ) : (
+        <p className="main-loading">Получение данных с сервера...</p>
+      )}
+    </main>
+  );
+};
 
 const mapStateToProps = store => ({
   data: store.books
@@ -27,5 +24,5 @@ const mapStateToProps = store => ({
 
 export default connect(
   mapStateToProps,
-  null
+  { getBooks }
 )(BooksList);

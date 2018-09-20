@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Button from './components/Button';
+import ToggleButton from './components/ToggleButton';
 
 const ToggleView = () => {
   console.log('<ToggleView/> render');
 
   return (
     <aside className="aside">
-      <Button />
+      <ToggleButton />
     </aside>
   );
 };

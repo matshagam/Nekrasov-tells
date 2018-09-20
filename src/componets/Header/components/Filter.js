@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Button from './Button';
+import FilterButton from './FilterButton';
 
 const Filter = () => {
   console.log('<Filter/> render');
 
   return (
     <section className="filter">
-      <Button />
+      <FilterButton />
     </section>
   );
 };

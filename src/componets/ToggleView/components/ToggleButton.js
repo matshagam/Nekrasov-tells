@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { changeView } from '../../../actions/ViewAction';
 
-class Button extends React.Component {
+class ToggleButton extends React.Component {
   state = {
     view: 2
   };
@@ -42,7 +42,7 @@ class Button extends React.Component {
   };
 
   renderButtons = () => {
-    const view = this.state.view;
+    const { view } = this.state;
     const VIEW_MODE = [{ id: 1, name: 'Список' }, { id: 2, name: 'Плитка' }];
 
     return (
@@ -70,4 +70,4 @@ class Button extends React.Component {
 export default connect(
   null,
   { changeView }
-)(Button);
+)(ToggleButton);

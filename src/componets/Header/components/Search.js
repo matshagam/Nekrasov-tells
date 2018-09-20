@@ -1,32 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { getBooks } from '../../../actions/BookAction';
 import { searchChanged } from '../../../actions/SearchAction';
 
-class Search extends React.Component {
-  searchQueryChanged = event => {
-    const { value } = event.target;
+const Search = ({ getBooks, searchChanged, filters }) => {
+  return (
+    <form className="search">
+      <input
+        type="text"
+        className="search-input"
+        placeholder="Поисковая строка"
+        onChange={e => {
+          getBooks(e.target.value, filters.filter);
+          searchChanged(e.target.value);
+        }}
+      />
+    </form>
+  );
+};
 
-    this.props.searchChanged(value);
-  };
-
-  render() {
-    console.log('<Search/> render');
-
-    return (
-      <form className="search">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Поисковая строка"
-          onChange={this.searchQueryChanged}
-        />
-      </form>
-    );
-  }
-}
+const mapStateToProps = store => ({
+  filters: store.filter
+});
 
 export default connect(
-  null,
-  { searchChanged }
+  mapStateToProps,
+  { getBooks, searchChanged }
 )(Search);
