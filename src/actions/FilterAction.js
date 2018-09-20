@@ -1,4 +1,4 @@
-import { CHANGE_FILTER, GET_BOOKS } from './types';
+import { CHANGE_FILTER } from './types';
 
 export const changeFilter = filter => {
   return {

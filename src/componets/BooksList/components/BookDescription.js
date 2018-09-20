@@ -6,9 +6,9 @@ const BookDescription = ({ description }) => {
   return (
     <p
       className="book-text-description"
-      style={!description ? { margin: 'auto', opacity: 0.5 } : null}
+      style={description ? null : { margin: 'auto', opacity: 0.5 }}
     >
-      {!description ? 'Описания нет' : description}
+      {description ? description : 'Описания нет'}
     </p>
   );
 };
