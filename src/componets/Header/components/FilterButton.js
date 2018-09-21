@@ -36,7 +36,7 @@ const FilterButton = ({ getBooks, changeFilter, search, filters }) => {
     <button
       disabled={id === filter ? true : false}
       key={id}
-      id={id}
+      id={'filter-btn-' + id}
       onClick={event => {
         handleFilterChange(event);
       }}

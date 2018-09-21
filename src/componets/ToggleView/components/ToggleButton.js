@@ -39,7 +39,7 @@ const ToggleButton = ({ changeView, view }) => {
     <button
       disabled={id === listView ? true : false}
       onClick={event => onClickChangeView(event)}
-      id={id}
+      id={'aside-btn-' + id}
       key={id}
     >
       {name}
