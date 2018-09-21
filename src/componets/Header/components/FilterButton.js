@@ -12,7 +12,7 @@ const FilterButton = ({ getBooks, changeFilter, search, filters }) => {
     let filterEvent = event.target.innerHTML;
 
     filterEvent =
-      filterEvent === 'Везде' ? '' : filterEvent === 'Книги' ? 1 : 2; // 2 ==== 'Периодика'
+      filterEvent === 'Везде' ? '' : filterEvent === 'Книги' ? 1 : 2; // 2 -> 'Периодика'
 
     changeFilter(filterEvent);
     getBooks(search.query, filterEvent);
