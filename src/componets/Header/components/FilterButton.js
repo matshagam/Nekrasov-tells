@@ -24,14 +24,7 @@ const FilterButton = ({ getBooks, changeFilter, search, filters }) => {
     changeFilter(filterEvent);
   };
 
-  filter =
-    filters.filter === ''
-      ? 1
-      : filters.filter === 1
-        ? 2
-        : filters.filter === 2
-          ? 3
-          : null;
+  filter = filters.filter === '' ? 1 : filters.filter + 1;
 
   const FILTER = [
     { id: 1, name: 'Везде' },
