@@ -20,8 +20,8 @@ const FilterButton = ({ getBooks, changeFilter, search, filters }) => {
             ? 2
             : null;
 
-    getBooks(search.query, filterEvent);
     changeFilter(filterEvent);
+    getBooks(search.query, filterEvent);
   };
 
   filter = filters.filter === '' ? 1 : filters.filter + 1;
