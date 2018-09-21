@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getBooks } from '../../actions/BookAction';
 
-import Book from './components/Book';
+import Book from './components/Book.jsx';
 
 const BooksList = ({ data }) => {
   return (

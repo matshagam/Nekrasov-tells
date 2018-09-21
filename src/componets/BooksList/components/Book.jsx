@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import BookDescription from './BookDescription';
+import BookDescription from './BookDescription.jsx';
 
 const Book = ({ view, data }) => {
   return data.books.map((book, i) => {

@@ -1,8 +1,8 @@
 import React from 'react';
 
 import logo from '../../assets/logo_nekrasovka.svg';
-import Search from './components/Search';
-import Filter from './components/Filter';
+import Search from './components/Search.jsx';
+import Filter from './components/Filter.jsx';
 
 const Header = () => {
   return (
