@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { changeView } from '../../../actions/ViewAction';
 
 const ToggleButton = ({ changeView, view }) => {
-  let listView = 2;
+  let viewButtonNumber = 2;
 
   const onClickChangeView = event => {
     let viewEvent = event.target.innerHTML;
@@ -31,13 +31,13 @@ const ToggleButton = ({ changeView, view }) => {
     }
   };
 
-  listView = view.listView ? 1 : 2;
+  viewButtonNumber = view.listView ? 1 : 2;
 
   const VIEW_MODE = [{ id: 1, name: 'Список' }, { id: 2, name: 'Плитка' }];
 
   return VIEW_MODE.map(({ id, name }) => (
     <button
-      disabled={id === listView ? true : false}
+      disabled={id === viewButtonNumber ? true : false}
       onClick={event => onClickChangeView(event)}
       id={'aside-btn-' + id}
       key={id}

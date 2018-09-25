@@ -6,7 +6,7 @@ import { changeFilter } from '../../../actions/FilterAction';
 import { getBooks } from '../../../actions/BookAction';
 
 const FilterButton = ({ getBooks, changeFilter, search, filters }) => {
-  let filter = 1;
+  let filterButtonNumber = 1;
 
   const handleFilterChange = event => {
     let filterEvent = event.target.innerHTML;
@@ -18,7 +18,7 @@ const FilterButton = ({ getBooks, changeFilter, search, filters }) => {
     getBooks(search.query, filterEvent);
   };
 
-  filter = filters.filter === '' ? 1 : filters.filter + 1;
+  filterButtonNumber = filters.filter === '' ? 1 : filters.filter + 1;
 
   const FILTER = [
     { id: 1, name: 'Везде' },
@@ -28,7 +28,7 @@ const FilterButton = ({ getBooks, changeFilter, search, filters }) => {
 
   return FILTER.map(({ id, name }) => (
     <button
-      disabled={id === filter ? true : false}
+      disabled={id === filterButtonNumber ? true : false}
       key={id}
       id={'filter-btn-' + id}
       onClick={event => {
